@@ -441,9 +441,9 @@ function finishOrder() {
   let userAnswer = document.getElementById("captchaInput").value;
 
   if (!name) return alert("Digite seu nome!");
-  if (userAnswer == "") return alert("Resolva a verificação!");
+  if (userAnswer === "") return alert("Resolva a verificação!");
 
-  if (parseInt(userAnswer) !== captchaAnswer) {
+  if (Number(userAnswer) !== captchaAnswer) {
     alert("Resposta incorreta! Tente novamente.");
     generateCaptcha();
     return;
@@ -492,8 +492,9 @@ function openCheckout() {
 
   document.getElementById("checkoutTotal").innerText = total;
 
-  generateCaptcha(); //
-} 
+  document.getElementById("captchaInput").value = ""; // limpa resposta antiga
+  generateCaptcha(); // gera novo captcha 
+}
 
 </script>
 
