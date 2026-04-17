@@ -344,6 +344,12 @@ footer a:hover {
       <p><b>Total: R$ <span id="checkoutTotal">0</span></b></p>
     </div>
 
+<div style="width:100%; margin-top:10px;">
+  <p><b>Verificação anti-bot:</b></p>
+  <p id="captchaQuestion"></p>
+  <input type="number" id="captchaInput" placeholder="Resposta">
+</div> 
+
     <button class="confirm" onclick="finishOrder()">Enviar no WhatsApp</button>
     <button class="close" onclick="closeCheckout()">Cancelar</button>
 
@@ -450,8 +456,16 @@ function closeCheckout() {
 
 function finishOrder() {
   let name = document.getElementById("clientName").value;
+  let userAnswer = document.getElementById("captchaInput").value;
 
   if (!name) return alert("Digite seu nome!");
+  if (userAnswer == "") return alert("Resolva a verificação!");
+
+  if (parseInt(userAnswer) !== captchaAnswer) {
+    alert("Resposta incorreta! Tente novamente.");
+    generateCaptcha();
+    return;
+  }
 
   let msg = "Pedido Buttonzitos:%0A";
   msg += "Nome: " + name + "%0A%0A";
@@ -464,6 +478,40 @@ function finishOrder() {
 
   window.open("https://wa.me/5587988116684?text=" + msg, "_blank");
 }
+
+// CAPTCHA simples
+let captchaAnswer = 0;
+
+function generateCaptcha() {
+  let a = Math.floor(Math.random() * 10) + 1;
+  let b = Math.floor(Math.random() * 10) + 1;
+
+  captchaAnswer = a + b;
+
+  document.getElementById("captchaQuestion").innerText =
+    `Quanto é ${a} + ${b}?`;
+}
+
+// gerar ao abrir checkout
+function openCheckout() {
+  if (cart.length === 0) return;
+
+  document.getElementById("checkoutModal").style.display = "flex";
+
+  let list = document.getElementById("checkoutItems");
+  let total = 0;
+
+  list.innerHTML = "";
+
+  cart.forEach(i => {
+    total += i.price * i.qty;
+    list.innerHTML += `<p>${i.name} (${i.qty}x)</p>`;
+  });
+
+  document.getElementById("checkoutTotal").innerText = total;
+
+  generateCaptcha(); // 👈 AQUI
+} 
 
 </script>
 
