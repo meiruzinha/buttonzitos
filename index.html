@@ -1,15 +1,14 @@
 <!-- ========================================
-espero que isso dê certo e não, 
-eu não tenho dinheiro p/ comprar um dominio 
+espero que isso dê certo e não,
+eu não tenho dinheiro p/ comprar um dominio
 Meimei ===================================-->
-
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buttonzitos  - Buttons Personalizados</title>
+  <title>Buttonzitos - Buttons Personalizados</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
@@ -425,8 +424,17 @@ Meimei ===================================-->
       justify-content: space-between;
       font-size: 1.1rem;
       font-weight: 700;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
+
+.aviso-minimo {
+      color: var(--danger);
+      font-size: 0.85rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      display: none;
+    }
+.aviso-minimo.show { display: block; }
 
 .modal-actions {
       display: flex;
@@ -536,6 +544,7 @@ Meimei ===================================-->
           <span>Total:</span>
           <span id="cart-total">R$ 0,00</span>
         </div>
+        <div class="aviso-minimo" id="aviso-minimo">Pedido mínimo: 4 buttons</div>
         <div class="modal-actions">
           <button class="btn btn-outline" id="limpar-carrinho">Limpar</button>
           <button class="btn" id="finalizar-compra">Finalizar no WhatsApp</button>
@@ -552,6 +561,7 @@ Meimei ===================================-->
 
   <script>
     const contatoLoja = '5587988116684';
+    const PEDIDO_MINIMO = 4;
 
     const cartCount = document.getElementById('cart-count');
     const cartBtn = document.getElementById('cart');
@@ -565,6 +575,7 @@ Meimei ===================================-->
     const cartItemsEl = document.getElementById('cart-items');
     const cartFooter = document.getElementById('cart-footer');
     const cartTotalEl = document.getElementById('cart-total');
+    const avisoMinimo = document.getElementById('aviso-minimo');
     const limparBtn = document.getElementById('limpar-carrinho');
     const finalizarBtn = document.getElementById('finalizar-compra');
     const nomeClienteInput = document.getElementById('nome-cliente');
@@ -606,8 +617,12 @@ Meimei ===================================-->
       return `R$ ${valor.toFixed(2).replace('.', ',')}`;
     }
 
+    function getTotalItens() {
+      return carrinho.reduce((acc, item) => acc + item.qtd, 0);
+    }
+
     function atualizarContador() {
-      const total = carrinho.reduce((acc, item) => acc + item.qtd, 0);
+      const total = getTotalItens();
       cartCount.textContent = total;
       cartCount.classList.toggle('active', total > 0);
       salvarCarrinho();
@@ -661,6 +676,11 @@ Meimei ===================================-->
 
       const total = carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
       cartTotalEl.textContent = formatarPreco(total);
+
+      const totalItens = getTotalItens();
+      const podeFinalizar = totalItens >= PEDIDO_MINIMO;
+      finalizarBtn.disabled =!podeFinalizar;
+      avisoMinimo.classList.toggle('show',!podeFinalizar);
 
       document.querySelectorAll('.aumentar-qtd').forEach(btn => {
         btn.addEventListener('click', e => {
@@ -765,6 +785,12 @@ Meimei ===================================-->
 
     finalizarBtn.addEventListener('click', e => {
       e.preventDefault();
+
+      const totalItens = getTotalItens();
+      if (totalItens < PEDIDO_MINIMO) {
+        mostrarToast(`Pedido mínimo de ${PEDIDO_MINIMO} buttons`, true);
+        return;
+      }
 
       if (!nomeClienteInput.value.trim()) {
         mostrarToast('Digite seu nome primeiro', true);
