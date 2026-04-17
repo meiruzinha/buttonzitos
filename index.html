@@ -444,6 +444,7 @@ Meimei ===================================-->
     }
 
     footer a {
+      color: #ff9a9e;
       background: linear-gradient(45deg, #ff9a9e, #fecfef, #caffbf, #9bf6ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -579,10 +580,16 @@ Meimei ===================================-->
     }
 
     function carregarCarrinho() {
-      const salvo = localStorage.getItem('buttonzitos_carrinho');
-      if (salvo) {
-        carrinho = JSON.parse(salvo);
-        atualizarContador();
+      try {
+        const salvo = localStorage.getItem('buttonzitos_carrinho');
+        if (salvo) {
+          carrinho = JSON.parse(salvo);
+          atualizarContador();
+        }
+      } catch (e) {
+        console.error('Carrinho corrompido, limpando...');
+        localStorage.removeItem('buttonzitos_carrinho');
+        carrinho = [];
       }
     }
 
@@ -615,15 +622,16 @@ Meimei ===================================-->
 
     function gerarLinkWpp() {
       const nome = nomeClienteInput.value.trim();
-      let msg = 'Olá! Quero fazer um pedido na Buttonzitos :%0A%0A';
-      if (nome) msg += `*Nome:* ${nome}%0A%0A`;
+      let msg = 'Olá! Quero fazer um pedido na Buttonzitos :\n\n';
+      if (nome) msg += `*Nome:* ${nome}\n\n`;
 
       carrinho.forEach(item => {
-        msg += `${item.qtd}x ${item.nome} - ${formatarPreco(item.preco * item.qtd)}%0A`;
+        msg += `${item.qtd}x ${item.nome} - ${formatarPreco(item.preco * item.qtd)}\n`;
       });
       const total = carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
-      msg += `%0A*Total: ${formatarPreco(total)}*`;
-      return `https://wa.me/${SEU_NUMERO_WPP}?text=${msg}`;
+      msg += `\n*Total: ${formatarPreco(total)}*`;
+
+      return `https://wa.me/${SEU_NUMERO_WPP}?text=${encodeURIComponent(msg)}`;
     }
 
     function renderizarCarrinho() {
@@ -693,6 +701,11 @@ Meimei ===================================-->
         item.qtd += delta;
         if (item.qtd <= 0) {
           removerDoCarrinho(id);
+        } else if (item.qtd > 99) {
+          item.qtd = 99;
+          mostrarToast('Limite de 99 unidades', true);
+          atualizarContador();
+          renderizarCarrinho();
         } else {
           atualizarContador();
           renderizarCarrinho();
@@ -721,7 +734,12 @@ Meimei ===================================-->
         const itemExistente = carrinho.find(item => item.id === id);
 
         if (itemExistente) {
-          itemExistente.qtd++;
+          if(itemExistente.qtd < 99) {
+            itemExistente.qtd++;
+          } else {
+            mostrarToast('Limite de 99 unidades', true);
+            return;
+          }
         } else {
           carrinho.push({ id, nome, preco, qtd: 1 });
         }
