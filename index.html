@@ -551,7 +551,7 @@ Meimei ===================================-->
   <div class="toast" id="toast"></div>
 
   <script>
-    const SEU_NUMERO_WPP = '5587988116684';
+    const contatoLoja = '5587988116684';
 
     const cartCount = document.getElementById('cart-count');
     const cartBtn = document.getElementById('cart');
@@ -631,7 +631,7 @@ Meimei ===================================-->
       const total = carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
       msg += `\n*Total: ${formatarPreco(total)}*`;
 
-      return `https://wa.me/${SEU_NUMERO_WPP}?text=${encodeURIComponent(msg)}`;
+      return `https://wa.me/${contatoLoja}?text=${encodeURIComponent(msg)}`;
     }
 
     function renderizarCarrinho() {
