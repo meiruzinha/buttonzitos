@@ -312,21 +312,21 @@ footer a:hover {
     <h3>Button 32mm</h3>
     <p class="desc">Minimalista e sutil</p>
     <p class="price">R$ 5,00</p>
-    <button onclick="add('Button 32mm',6)">Adicionar</button>
+    <button onclick="add('Button 32mm',5)">Adicionar</button>
   </div>
 
   <div class="card">
     <h3>Button 44mm</h3>
     <p class="desc">Visibilidade e conforto</p>
     <p class="price">R$ 6,00</p>
-    <button onclick="add('Button 44mm',7)">Adicionar</button>
+    <button onclick="add('Button 44mm',6)">Adicionar</button>
   </div>
 
   <div class="card">
     <h3>Button 58mm</h3>
     <p class="desc">Destaque e impacto</p>
     <p class="price">R$ 7,00</p>
-    <button onclick="add('Button 58mm',8)">Adicionar</button>
+    <button onclick="add('Button 58mm',7)">Adicionar</button>
   </div>
 
 </div>
@@ -432,24 +432,6 @@ function increase(i){ cart[i].qty++; updateCart(); }
 function decrease(i){ cart[i].qty--; if(cart[i].qty<=0) cart.splice(i,1); updateCart(); }
 function removeItem(i){ cart.splice(i,1); updateCart(); }
 
-function openCheckout() {
-  if (cart.length === 0) return;
-
-  document.getElementById("checkoutModal").style.display = "flex";
-
-  let list = document.getElementById("checkoutItems");
-  let total = 0;
-
-  list.innerHTML = "";
-
-  cart.forEach(i => {
-    total += i.price * i.qty;
-    list.innerHTML += `<p>${i.name} (${i.qty}x)</p>`;
-  });
-
-  document.getElementById("checkoutTotal").innerText = total;
-}
-
 function closeCheckout() {
   document.getElementById("checkoutModal").style.display = "none";
 }
@@ -510,7 +492,7 @@ function openCheckout() {
 
   document.getElementById("checkoutTotal").innerText = total;
 
-  generateCaptcha(); // 👈 AQUI
+  generateCaptcha(); //
 } 
 
 </script>
