@@ -1,0 +1,471 @@
+<!-- ========================================
+espero que isso dê certo e não, 
+eu não tenho dinheiro p/ comprar um dominio 
+Meimei ===================================-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buttonzitos</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+
+ /* 🌐 BASE DO SITE */ 
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+ /* 🔝 HEADER */ 
+header {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  margin: 0;
+}
+
+ /* 🌌 HERO (AURORA BOREAL) */ 
+.hero {
+  background: linear-gradient(120deg,
+    #7f7fd5,
+    #86a8e7,
+    #91eae4,
+    #c471ed,
+    #f7797d
+  );
+  background-size: 400% 400%;
+  animation: aurora 12s ease infinite;
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.15), transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255,255,255,0.12), transparent 60%);
+  mix-blend-mode: screen;
+  animation: glowMove 8s ease-in-out infinite;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes aurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes glowMove {
+  0% { transform: translateX(0px) translateY(0px); }
+  50% { transform: translateX(20px) translateY(-10px); }
+  100% { transform: translateX(0px) translateY(0px); }
+}
+
+ /* 🛍️ PRODUTOS */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.desc {
+  font-size: 14px;
+  color: #666;
+}
+
+.price {
+  color: #ff4d6d;
+  font-weight: bold;
+}
+
+/* botão */
+button {
+  padding: 8px 12px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+ /* 🛒 CARRINHO */ 
+.cart-icon {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: black;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart {
+  position: fixed;
+  top: 70px;
+  right: 15px;
+  width: 280px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 9999;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.qty-btn, .remove {
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: 0.2s;
+  user-select: none;
+}
+
+.qty-btn:hover {
+  background: #eee;
+  transform: scale(1.15);
+}
+
+.remove:hover {
+  background: #ffe5e5;
+  transform: scale(1.15);
+}
+
+.total {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.checkout {
+  margin-top: 10px;
+  width: 100%;
+}
+
+ /* 💳 CHECKOUT */ 
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  padding: 20px;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 380px;
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-box input {
+  width: 100%;
+  max-width: 320px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 14px;
+}
+
+.summary {
+  background: #f7f7f7;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.confirm {
+  width: 100%;
+  background: black;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.close {
+  width: 100%;
+  margin-top: 8px;
+  background: #ccc;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  color: white;
+  font-size: 14px;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  opacity: 0.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Buttonzitos ✨</h1>
+  <p>Buttons personalizados 💖</p>
+</header>
+
+<section class="hero">
+  <h2>Crie seu estilo com buttons únicos</h2>
+  <p>Escolha seu tamanho favorito</p>
+</section>
+
+<div class="cart-icon" onclick="toggleCart()">
+  🛒
+  <div class="cart-count" id="cartCount">0</div>
+</div>
+
+<div class="cart" id="cartBox">
+  <h3>Seu Carrinho</h3>
+  <div id="cartItems"></div>
+  <p class="total">Total: R$ <span id="total">0</span></p>
+  <button class="checkout" onclick="openCheckout()">Finalizar Pedido</button>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h3>Button 32mm</h3>
+    <p class="desc">Minimalista e sutil</p>
+    <p class="price">R$ 5,00</p>
+    <button onclick="add('Button 32mm',6)">Adicionar</button>
+  </div>
+
+  <div class="card">
+    <h3>Button 44mm</h3>
+    <p class="desc">Visibilidade e conforto</p>
+    <p class="price">R$ 6,00</p>
+    <button onclick="add('Button 44mm',7)">Adicionar</button>
+  </div>
+
+  <div class="card">
+    <h3>Button 58mm</h3>
+    <p class="desc">Destaque e impacto</p>
+    <p class="price">R$ 7,00</p>
+    <button onclick="add('Button 58mm',8)">Adicionar</button>
+  </div>
+
+</div>
+
+<div class="modal" id="checkoutModal">
+  <div class="modal-box">
+
+    <h2>Finalizar Pedido</h2>
+
+    <input type="text" id="clientName" placeholder="Seu nome">
+
+    <div class="summary">
+      <h3>Resumo</h3>
+      <div id="checkoutItems"></div>
+      <p><b>Total: R$ <span id="checkoutTotal">0</span></b></p>
+    </div>
+
+    <button class="confirm" onclick="finishOrder()">Enviar no WhatsApp</button>
+    <button class="close" onclick="closeCheckout()">Cancelar</button>
+
+  </div>
+</div>
+
+<footer>
+  <p>
+    © 2026 
+    <a href="https://www.instagram.com/buttonzitos/" target="_blank" rel="noopener noreferrer"
+       style="display:inline-block; padding:5px 8px;">
+      Buttonzitos
+    </a>
+    - Todos os direitos reservados
+  </p>
+</footer>
+
+<script>
+
+/* 🔥 CARREGA CARRINHO SALVO */
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+updateCart();
+
+/* SALVAR SEMPRE QUE ATUALIZAR */
+function saveCart(){
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function toggleCart() {
+  let box = document.getElementById("cartBox");
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+function add(name, price) {
+  let item = cart.find(i => i.name === name);
+  if (item) item.qty++;
+  else cart.push({name, price, qty: 1});
+  updateCart();
+}
+
+function updateCart() {
+  let list = document.getElementById("cartItems");
+  let total = 0;
+  let count = 0;
+
+  list.innerHTML = "";
+
+  cart.forEach((item, i) => {
+    total += item.price * item.qty;
+    count += item.qty;
+
+    list.innerHTML += `
+      <div class="cart-item">
+        ${item.name} - R$ ${item.price}
+        <div>
+          <span class="qty-btn" onclick="decrease(${i})">-</span>
+          ${item.qty}x
+          <span class="qty-btn" onclick="increase(${i})">+</span>
+        </div>
+        <span class="remove" onclick="removeItem(${i})">x</span>
+      </div>
+    `;
+  });
+
+  document.getElementById("total").innerText = total;
+
+  let c = document.getElementById("cartCount");
+  if (count > 0) {
+    c.style.display = "flex";
+    c.innerText = count;
+  } else {
+    c.style.display = "none";
+  }
+
+  saveCart(); // 💾 SALVA AQUI
+}
+
+function increase(i){ cart[i].qty++; updateCart(); }
+function decrease(i){ cart[i].qty--; if(cart[i].qty<=0) cart.splice(i,1); updateCart(); }
+function removeItem(i){ cart.splice(i,1); updateCart(); }
+
+function openCheckout() {
+  if (cart.length === 0) return;
+
+  document.getElementById("checkoutModal").style.display = "flex";
+
+  let list = document.getElementById("checkoutItems");
+  let total = 0;
+
+  list.innerHTML = "";
+
+  cart.forEach(i => {
+    total += i.price * i.qty;
+    list.innerHTML += `<p>${i.name} (${i.qty}x)</p>`;
+  });
+
+  document.getElementById("checkoutTotal").innerText = total;
+}
+
+function closeCheckout() {
+  document.getElementById("checkoutModal").style.display = "none";
+}
+
+function finishOrder() {
+  let name = document.getElementById("clientName").value;
+
+  if (!name) return alert("Digite seu nome!");
+
+  let msg = "Pedido Buttonzitos:%0A";
+  msg += "Nome: " + name + "%0A%0A";
+
+  cart.forEach(i => {
+    msg += `- ${i.name} (${i.qty}x)%0A`;
+  });
+
+  msg += "%0ATotal: R$ " + document.getElementById("checkoutTotal").innerText;
+
+  window.open("https://wa.me/5587988116684?text=" + msg, "_blank");
+}
+
+</script>
+
+</body>
+</html>
