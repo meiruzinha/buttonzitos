@@ -114,9 +114,9 @@ Meimei ===================================-->
       text-align: center;
       padding: 4rem 0 3rem;
       width: 100%;
-      background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fec3a5, #ffd6a5, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff);
+      background: linear-gradient(-45deg, #ffc8dd, #bde0fe, #c8e6c9, #fff3b0, #ffd6e8, #a2d2ff, #d4e7c5, #ffcad4);
       background-size: 400% 400%;
-      animation: aurora 12s ease infinite;
+      animation: aurora 14s ease infinite;
     }
 
     @keyframes aurora {
@@ -507,8 +507,8 @@ Meimei ===================================-->
     }
 
     footer a {
-      color: #ff9a9e;
-      background: linear-gradient(45deg, #ff9a9e, #fecfef, #caffbf, #9bf6ff);
+      color: #ffc8dd;
+      background: linear-gradient(45deg, #ffc8dd, #bde0fe, #c8e6c9, #fff3b0, #ffd6e8, #a2d2ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -817,7 +817,6 @@ Meimei ===================================-->
       descontoEl.classList.toggle('show', temDesconto);
       descontoInfo.classList.toggle('show', temDesconto);
       
-      // Aviso de quantos faltam pro desconto
       if (totalItens > 0 && totalItens < DESCONTO_QTD_MINIMA) {
         avisoDesconto.textContent = `Faltam ${faltam} button${faltam > 1 ? 's' : ''} pra ganhar 15% OFF!`;
         avisoDesconto.classList.add('show');
