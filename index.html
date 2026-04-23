@@ -8,7 +8,7 @@ Meimei ===================================-->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Buttonzitos - Buttons personalizados de 32mm, 44mm e 58mm. Fundo plástico ou metal. Pedido mínimo 4 units. 15% OFF acima de 15 buttons.">
+  <meta name="description" content="Buttonzitos - Buttons personalizados de 32mm, 44mm e 58mm. Fundo plástico ou metal. Pedido mínimo 4 unidades. 15% OFF acima de 15 buttons.">
   <title>Buttonzitos - Buttons Personalizados</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
@@ -83,34 +83,6 @@ Meimei ===================================-->
     }
     nav a:hover { color: var(--accent); }
 
- .cart {
-      position: relative;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
- .cart-icon { font-size: 1.5rem; filter: invert(1); }
-
- .cart-count {
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      background: var(--accent);
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 700;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transform: scale(0);
-      transition: transform 0.2s;
-    }
-
- .cart-count.active { transform: scale(1); }
-
  .instagram-float {
       position: fixed;
       right: 20px;
@@ -137,6 +109,50 @@ Meimei ===================================-->
       height: 28px;
       fill: #fff;
     }
+
+ .carrinho-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 99;
+      width: 56px;
+      height: 56px;
+      background: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+ .carrinho-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+    }
+ .carrinho-float-icon { 
+      font-size: 1.5rem; 
+      filter: invert(1); 
+    }
+ .carrinho-float-count {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0);
+      transition: transform 0.2s;
+    }
+ .carrinho-float-count.active { transform: scale(1); }
+
  .hero {
       text-align: center;
       padding: 4rem 0 3rem;
@@ -329,7 +345,7 @@ Meimei ===================================-->
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
     }
 
- .modal-overlay.active.modal { transform: scale(1); }
+ .modal-overlay.active .modal { transform: scale(1); }
 
  .modal-header {
       padding: 0.75rem 1rem;
@@ -525,7 +541,7 @@ Meimei ===================================-->
       gap: 0.6rem;
     }
 
- .modal-actions.btn { flex: 1; }
+ .modal-actions .btn { flex: 1; }
 
     footer {
       text-align: center;
@@ -575,6 +591,12 @@ Meimei ===================================-->
       width: 24px;
       height: 24px;
     }
+   .carrinho-float {
+      width: 50px;
+      height: 50px;
+      right: 15px;
+      bottom: 15px;
+    }
     }
   </style>
 </head>
@@ -587,6 +609,11 @@ Meimei ===================================-->
   </svg>
 </a>
 
+<div class="carrinho-float" id="carrinho-float">
+  <span class="carrinho-float-icon">🛒</span>
+  <span class="carrinho-float-count" id="carrinho-float-count">0</span>
+</div>
+
   <header>
     <div class="logo">Buttonzitos </div>
     <div class="header-right">
@@ -596,10 +623,6 @@ Meimei ===================================-->
   <a href="#produtos">Produtos</a>
   <a href="#faq">FAQ</a>
 </nav>
-      <div class="cart" id="cart">
-        <span class="cart-icon">🛒</span>
-        <span class="cart-count" id="cart-count">0</span>
-      </div>
     </div>
   </header>
 
@@ -728,12 +751,12 @@ Meimei ===================================-->
     const DESCONTO_QTD_MINIMA = 15;
     const DESCONTO_PERCENTUAL = 0.15;
 
-    const cartCount = document.getElementById('cart-count');
-    const cartBtn = document.getElementById('cart');
     const toast = document.getElementById('toast');
     const addButtons = document.querySelectorAll('.add-cart');
     const menuBtn = document.getElementById('menu-btn');
     const nav = document.getElementById('nav');
+    const carrinhoFloat = document.getElementById('carrinho-float');
+    const carrinhoFloatCount = document.getElementById('carrinho-float-count');
 
     const cartModal = document.getElementById('cart-modal');
     const closeModal = document.getElementById('close-modal');
@@ -810,8 +833,8 @@ Meimei ===================================-->
 
     function atualizarContador() {
       const total = getTotalItens();
-      cartCount.textContent = total;
-      cartCount.classList.toggle('active', total > 0);
+      carrinhoFloatCount.textContent = total;
+      carrinhoFloatCount.classList.toggle('active', total > 0);
       salvarCarrinho();
     }
 
@@ -927,7 +950,8 @@ Meimei ===================================-->
       cartModal.classList.remove('active');
       document.body.classList.remove('modal-open');
     }
-        function alterarQtd(id, delta) {
+
+    function alterarQtd(id, delta) {
       const item = carrinho.find(item => item.id === id);
       if (item) {
         item.qtd += delta;
@@ -935,8 +959,8 @@ Meimei ===================================-->
           removerDoCarrinho(id);
         } else if (item.qtd > 99) {
           item.qtd = 99;
-          mostrarToast('Limite de 99 unidades', true);
-          atualizarContador();
+          mostrarToast('Limite de 99 unidades', true);       
+ atualizarContador();
           renderizarCarrinho();
         } else {
           atualizarContador();
@@ -944,7 +968,6 @@ Meimei ===================================-->
         }
       }
     }
-
     function removerDoCarrinho(id) {
       const index = carrinho.findIndex(item => item.id === id);
       if (index > -1) {
@@ -981,7 +1004,7 @@ Meimei ===================================-->
       });
     });
 
-    cartBtn.addEventListener('click', abrirModal);
+    carrinhoFloat.addEventListener('click', abrirModal);
     closeModal.addEventListener('click', fecharModal);
     cartModal.addEventListener('click', e => {
       if (e.target === cartModal) fecharModal();
@@ -1011,12 +1034,12 @@ Meimei ===================================-->
       }
 
       const resposta = parseInt(captchaResposta.value);
-      if (resposta!== captchaValor) {
-        captchaErro.classList.add('show');
-        captchaResposta.focus();
-        mostrarToast('Captcha incorreto!', true);
-        return;
-      }
+      if (resposta !== captchaValor) { 
+        captchaErro.classList.add('show');  
+        captchaResposta.focus();  
+        mostrarToast('Captcha incorreto!', true);  
+        return; 
+      } 
 
       captchaErro.classList.remove('show');
       window.open(gerarLinkWpp(), '_blank');
@@ -1029,8 +1052,8 @@ Meimei ===================================-->
       }, 500);
     });
 
-        menuBtn.addEventListener('click', () => {
-      nav.style.display = nav.style.display === 'block'? 'none' : 'block';
+    menuBtn.addEventListener('click', () => {
+      nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
     });
 
     document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -1042,7 +1065,6 @@ Meimei ===================================-->
         if (window.innerWidth <= 768) nav.style.display = 'none';
       });
     });
-
     carregarCarrinho();
   </script>
 </body>
