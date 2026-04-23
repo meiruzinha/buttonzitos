@@ -110,6 +110,32 @@ Meimei ===================================-->
 
  .cart-count.active { transform: scale(1); }
 
+ .instagram-float {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 99;
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+ .instagram-float:hover {
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 6px 20px rgba(255, 200, 221, 0.6);
+    }
+ .instagram-float svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+    }
  .hero {
       text-align: center;
       padding: 4rem 0 3rem;
@@ -176,7 +202,9 @@ Meimei ===================================-->
  .produto h3 {
       color: #000;
       margin-bottom: 0.4rem;
-      font-size: 1.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
     }
 
  .produto p {
@@ -537,10 +565,27 @@ Meimei ===================================-->
       justify-content: space-between;
       width: 100%;
     }
+   .instagram-float {
+      width: 50px;
+      height: 50px;
+      right: 15px;
+    }
+   .instagram-float svg {
+      width: 24px;
+      height: 24px;
+    }
     }
   </style>
 </head>
 <body>
+<a href="https://instagram.com/buttonzitos" target="_blank" class="instagram-float" aria-label="Instagram">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" stroke-width="2" fill="none"/>
+    <circle cx="12" cy="12" r="4" stroke="white" stroke-width="2" fill="none"/>
+    <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
+  </svg>
+</a>
+
   <header>
     <div class="logo">Buttonzitos </div>
     <div class="header-right">
@@ -566,43 +611,43 @@ Meimei ===================================-->
       <h2>Produtos</h2>
       <div class="produtos">
         <div class="produto" data-id="32p" data-nome="Button 32mm - Fundo Plástico" data-preco="4.00">
-          <h3>Button 32mm</h3>
-          <p>Fundo Plástico - Leve e econômico</p>
+          <h3>Button 32mm - Fundo Plástico </h3>
+          <p>Leve e econômico</p>
           <div class="preco">R$ 4,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
 
         <div class="produto" data-id="44p" data-nome="Button 44mm - Fundo Plástico" data-preco="5.00">
-          <h3>Button 44mm</h3>
-          <p>Fundo Plástico - Mais vendido</p>
+          <h3>Button 44mm - Fundo Plástico</h3>
+          <p>Mais vendido</p>
           <div class="preco">R$ 5,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
 
         <div class="produto" data-id="58p" data-nome="Button 58mm - Fundo Plástico" data-preco="6.00">
-          <h3>Button 58mm</h3>
-          <p>Fundo Plástico - Máximo destaque</p>
+          <h3>Button 58mm - Fundo Plástico </h3>
+          <p>Máximo destaque</p>
           <div class="preco">R$ 6,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
 
 <div class="produto" data-id="32m" data-nome="Button 32mm - Fundo Metal" data-preco="5.00">
-          <h3>Button 32mm</h3>
-          <p>Fundo Metal - Premium e resistente</p>
+          <h3>Button 32mm - Fundo Metal</h3>
+          <p>Premium e resistente</p>
           <div class="preco">R$ 5,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
 
 <div class="produto" data-id="44m" data-nome="Button 44mm - Fundo Metal" data-preco="6.00">
-          <h3>Button 44mm</h3>
-          <p>Fundo Metal - Qualidade superior</p>
+          <h3>Button 44mm - Fundo Metal </h3>
+          <p>Qualidade superior</p>
           <div class="preco">R$ 6,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
 
         <div class="produto" data-id="58m" data-nome="Button 58mm - Fundo Metal" data-preco="7.00">
-          <h3>Button 58mm</h3>
-          <p>Fundo Metal - Tamanho + resistência</p>
+          <h3>Button 58mm - Fundo Metal</h3>
+          <p> Tamanho + resistência</p>
           <div class="preco">R$ 7,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
@@ -650,8 +695,8 @@ Meimei ===================================-->
   </div>
 
   <footer>
-    <p>© 2026 <a href="https://instagram.com/buttonzitos" target="_blank">Buttonzitos ✨</a>. Todos os direitos reservados.</p>
-  </footer>
+  <p>© 2026 <a href="https://instagram.com/nellehyriem" target="_blank">Buttonzitos </a> — Todos os direitos reservados.</p>
+</footer>
 
   <div class="toast" id="toast"></div>
 
@@ -757,7 +802,7 @@ Meimei ===================================-->
 
     function gerarLinkWpp() {
       const nome = nomeClienteInput.value.trim();
-      let msg = 'Olá! Quero fazer um pedido na Buttonzitos :\n\n';
+      let msg = 'Olá! Quero fazer um pedido na Buttonzitos:\n\n';
       if (nome) msg += `*Nome:* ${nome}\n\n`;
 
       carrinho.forEach(item => {
@@ -825,8 +870,8 @@ Meimei ===================================-->
       }
 
       const podeFinalizar = totalItens >= PEDIDO_MINIMO;
-      finalizarBtn.disabled =!podeFinalizar;
-      avisoMinimo.classList.toggle('show',!podeFinalizar);
+      finalizarBtn.disabled = !podeFinalizar;
+      avisoMinimo.classList.toggle('show', !podeFinalizar);
 
       document.querySelectorAll('.aumentar-qtd').forEach(btn => {
         btn.addEventListener('click', e => {
@@ -860,8 +905,7 @@ Meimei ===================================-->
       cartModal.classList.remove('active');
       document.body.classList.remove('modal-open');
     }
-
-    function alterarQtd(id, delta) {
+        function alterarQtd(id, delta) {
       const item = carrinho.find(item => item.id === id);
       if (item) {
         item.qtd += delta;
