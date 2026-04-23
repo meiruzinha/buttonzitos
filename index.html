@@ -25,10 +25,7 @@ Meimei ===================================-->
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html, body {
-      overflow-x: hidden;
-    }
+    html, body { overflow-x: hidden; }
 
     body {
       font-family: system-ui, -apple-system, sans-serif;
@@ -61,15 +58,15 @@ Meimei ===================================-->
       z-index: 10;
     }
 
-.logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-weight: 400;
-  font-size: 1.8rem;
-  color: #fff;
-  letter-spacing: 1px;
-}
+ .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: 1.8rem;
+      color: #fff;
+      letter-spacing: 1px;
+    }
 
-.header-right {
+ .header-right {
       display: flex;
       align-items: center;
       gap: 1.5rem;
@@ -84,15 +81,15 @@ Meimei ===================================-->
     }
     nav a:hover { color: var(--accent); }
 
-.cart {
+ .cart {
       position: relative;
       cursor: pointer;
       padding: 0.5rem;
     }
 
-.cart-icon { font-size: 1.5rem; filter: invert(1); }
+ .cart-icon { font-size: 1.5rem; filter: invert(1); }
 
-.cart-count {
+ .cart-count {
       position: absolute;
       top: -2px;
       right: -2px;
@@ -110,9 +107,9 @@ Meimei ===================================-->
       transition: transform 0.2s;
     }
 
-.cart-count.active { transform: scale(1); }
+ .cart-count.active { transform: scale(1); }
 
-.hero {
+ .hero {
       text-align: center;
       padding: 4rem 0 3rem;
       width: 100%;
@@ -127,7 +124,7 @@ Meimei ===================================-->
       100% { background-position: 0% 50%; }
     }
 
-.hero h1 {
+ .hero h1 {
       font-size: clamp(2rem, 5vw, 3rem);
       margin-bottom: 0.5rem;
       color: #000;
@@ -136,7 +133,7 @@ Meimei ===================================-->
       margin-right: auto;
       padding: 0 5%;
     }
-.hero p {
+ .hero p {
       color: #1e293b;
       font-weight: 500;
       max-width: 1100px;
@@ -145,34 +142,27 @@ Meimei ===================================-->
       padding: 0 5%;
     }
 
-    main {
-      background: var(--bg);
-    }
-
+    main { background: var(--bg); }
     section {
       padding: 2rem 5% 4rem;
       max-width: 1100px;
       margin: 0 auto;
     }
-
     section.hero {
       max-width: none;
       padding: 4rem 0 3rem;
     }
 
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
+    h2 { font-size: 2rem; margin-bottom: 0.5rem; }
 
-.produtos {
+ .produtos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.25rem;
       margin-top: 2rem;
     }
 
-.produto {
+ .produto {
       background: #fff;
       padding: 1rem;
       border-radius: var(--radius);
@@ -182,27 +172,27 @@ Meimei ===================================-->
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
-.produto h3 {
+ .produto h3 {
       color: #000;
       margin-bottom: 0.4rem;
       font-size: 1.2rem;
     }
 
-.produto p {
+ .produto p {
       color: var(--text-muted);
       margin-bottom: 0.75rem;
       flex-grow: 1;
       font-size: 0.9rem;
     }
 
-.preco {
+ .preco {
       font-size: 1.4rem;
       font-weight: 700;
       margin-bottom: 0.75rem;
       color: var(--text);
     }
 
-.btn {
+ .btn {
       background: #000;
       color: white;
       padding: 0.7rem 1.4rem;
@@ -217,34 +207,34 @@ Meimei ===================================-->
       text-align: center;
       font-size: 0.95rem;
     }
-.btn:hover {
+ .btn:hover {
       background: #1e293b;
       transform: translateY(-2px);
     }
-.btn:active { transform: translateY(0); }
-.btn:disabled {
+ .btn:active { transform: translateY(0); }
+ .btn:disabled {
       opacity: 0.5;
       cursor: not-allowed;
       transform: none;
     }
 
-.btn-danger {
+ .btn-danger {
       background: var(--danger);
       color: white;
       padding: 0.3rem 0.6rem;
       font-size: 0.75rem;
       width: auto;
     }
-.btn-danger:hover { background: #b91c1c; transform: none; }
+ .btn-danger:hover { background: #b91c1c; transform: none; }
 
-.btn-outline {
+ .btn-outline {
       background: transparent;
       border: 1px solid var(--border);
       color: var(--text);
     }
-.btn-outline:hover { background: var(--card); transform: none; }
+ .btn-outline:hover { background: var(--card); transform: none; }
 
-.btn-qtd {
+ .btn-qtd {
       background: var(--card);
       color: var(--text);
       border: 1px solid var(--border);
@@ -254,9 +244,9 @@ Meimei ===================================-->
       font-size: 1rem;
       line-height: 1;
     }
-.btn-qtd:hover { background: #e2e8f0; transform: none; }
+ .btn-qtd:hover { background: #e2e8f0; transform: none; }
 
-.toast {
+ .toast {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
@@ -270,10 +260,10 @@ Meimei ===================================-->
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-.toast.error { border-color: var(--danger); }
-.toast.show { transform: translateX(0); }
+ .toast.error { border-color: var(--danger); }
+ .toast.show { transform: translateX(0); }
 
-.modal-overlay {
+ .modal-overlay {
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.4);
@@ -287,12 +277,12 @@ Meimei ===================================-->
       transition: opacity 0.2s;
     }
 
-.modal-overlay.active {
+ .modal-overlay.active {
       opacity: 1;
       pointer-events: all;
     }
 
-.modal {
+ .modal {
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -306,9 +296,9 @@ Meimei ===================================-->
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
     }
 
-.modal-overlay.active.modal { transform: scale(1); }
+ .modal-overlay.active.modal { transform: scale(1); }
 
-.modal-header {
+ .modal-header {
       padding: 1.25rem;
       border-bottom: 1px solid var(--border);
       display: flex;
@@ -316,9 +306,9 @@ Meimei ===================================-->
       align-items: center;
     }
 
-.modal-header h2 { font-size: 1.2rem; }
+ .modal-header h2 { font-size: 1.2rem; }
 
-.close-modal {
+ .close-modal {
       background: none;
       border: none;
       color: var(--text);
@@ -328,43 +318,43 @@ Meimei ===================================-->
       padding: 0 0.5rem;
     }
 
-.modal-body {
+ .modal-body {
       padding: 1rem 1.25rem;
       overflow-y: auto;
       flex-grow: 1;
     }
 
-.cart-empty {
+ .cart-empty {
       text-align: center;
       color: var(--text-muted);
       padding: 2rem 0;
     }
 
-.cart-item {
+ .cart-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0.75rem 0;
       border-bottom: 1px solid var(--border);
     }
-.cart-item:last-child { border-bottom: none; }
+ .cart-item:last-child { border-bottom: none; }
 
-.item-info h4 {
+ .item-info h4 {
       margin-bottom: 0.15rem;
       font-size: 0.95rem;
     }
-.item-info p {
+ .item-info p {
       color: var(--text-muted);
       font-size: 0.8rem;
     }
 
-.item-actions {
+ .item-actions {
       display: flex;
       align-items: center;
       gap: 0.4rem;
     }
 
-.item-qtd {
+ .item-qtd {
       color: var(--accent);
       font-weight: 600;
       min-width: 25px;
@@ -372,12 +362,12 @@ Meimei ===================================-->
       font-size: 0.9rem;
     }
 
-.modal-footer {
+ .modal-footer {
       padding: 1.25rem;
       border-top: 1px solid var(--border);
     }
 
-.cliente-input,.captcha-input {
+ .cliente-input,.captcha-input {
       width: 100%;
       background: var(--card);
       border: 1px solid var(--border);
@@ -388,12 +378,12 @@ Meimei ===================================-->
       font-size: 0.95rem;
       font-family: inherit;
     }
-.cliente-input:focus,.captcha-input:focus {
+ .cliente-input:focus,.captcha-input:focus {
       outline: none;
       border-color: var(--accent);
     }
 
-.captcha-box {
+ .captcha-box {
       background: var(--card);
       border: 1px solid var(--border);
       padding: 0.85rem;
@@ -402,14 +392,14 @@ Meimei ===================================-->
       text-align: center;
     }
 
-.captcha-pergunta {
+ .captcha-pergunta {
       font-size: 1rem;
       margin-bottom: 0.6rem;
       color: var(--accent);
       font-weight: 600;
     }
 
-.captcha-erro {
+ .captcha-erro {
       color: var(--danger);
       font-size: 0.8rem;
       margin-top: -0.4rem;
@@ -417,9 +407,9 @@ Meimei ===================================-->
       display: none;
     }
 
-.captcha-erro.show { display: block; }
+ .captcha-erro.show { display: block; }
 
-.cart-total {
+ .cart-total {
       display: flex;
       justify-content: space-between;
       font-size: 1.1rem;
@@ -427,21 +417,21 @@ Meimei ===================================-->
       margin-bottom: 0.5rem;
     }
 
-.aviso-minimo {
+ .aviso-minimo {
       color: var(--danger);
       font-size: 0.85rem;
       text-align: center;
       margin-bottom: 1rem;
       display: none;
     }
-.aviso-minimo.show { display: block; }
+ .aviso-minimo.show { display: block; }
 
-.modal-actions {
+ .modal-actions {
       display: flex;
       gap: 0.75rem;
     }
 
-.modal-actions.btn { flex: 1; }
+ .modal-actions.btn { flex: 1; }
 
     footer {
       text-align: center;
@@ -462,16 +452,14 @@ Meimei ===================================-->
       transition: opacity 0.2s;
     }
 
-    footer a:hover {
-      opacity: 0.8;
-    }
+    footer a:hover { opacity: 0.8; }
 
     #menu-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; }
 
     @media (max-width: 768px) {
       nav { display: none; }
       #menu-btn { display: block; }
-.modal { width: 95%; }
+   .modal { width: 95%; }
     }
   </style>
 </head>
@@ -494,29 +482,50 @@ Meimei ===================================-->
   <main>
     <section class="hero" id="inicio">
       <h1>Buttons Personalizados</h1>
-      <p>Escolha o tamanho ideal pro seu evento ou coleção</p>
+      <p>Escolha o tamanho e tipo de fundo ideal pro seu evento</p>
     </section>
 
     <section id="produtos">
       <h2>Produtos</h2>
       <div class="produtos">
-        <div class="produto" data-id="32" data-nome="Button 32mm" data-preco="5.00">
+        <div class="produto" data-id="32p" data-nome="Button 32mm - Fundo Plástico" data-preco="4.00">
           <h3>Button 32mm</h3>
-          <p>Compacto e versátil</p>
+          <p>Fundo Plástico - Leve e econômico</p>
+          <div class="preco">R$ 4,00</div>
+          <button class="btn add-cart">Adicionar ao carrinho</button>
+        </div>
+
+        <div class="produto" data-id="44p" data-nome="Button 44mm - Fundo Plástico" data-preco="5.00">
+          <h3>Button 44mm</h3>
+          <p>Fundo Plástico - Mais vendido</p>
           <div class="preco">R$ 5,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
 
-        <div class="produto" data-id="44" data-nome="Button 44mm" data-preco="6.00">
-          <h3>Button 44mm</h3>
-          <p>Mais vendido</p>
+        <div class="produto" data-id="58p" data-nome="Button 58mm - Fundo Plástico" data-preco="6.00">
+          <h3>Button 58mm</h3>
+          <p>Fundo Plástico - Máximo destaque</p>
           <div class="preco">R$ 6,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
 
-        <div class="produto" data-id="58" data-nome="Button 58mm" data-preco="7.00">
+<div class="produto" data-id="32m" data-nome="Button 32mm - Fundo Metal" data-preco="5.00">
+          <h3>Button 32mm</h3>
+          <p>Fundo Metal - Premium e resistente</p>
+          <div class="preco">R$ 5,00</div>
+          <button class="btn add-cart">Adicionar ao carrinho</button>
+        </div>
+
+<div class="produto" data-id="44m" data-nome="Button 44mm - Fundo Metal" data-preco="6.00">
+          <h3>Button 44mm</h3>
+          <p>Fundo Metal - Qualidade superior</p>
+          <div class="preco">R$ 6,00</div>
+          <button class="btn add-cart">Adicionar ao carrinho</button>
+        </div>
+
+        <div class="produto" data-id="58m" data-nome="Button 58mm - Fundo Metal" data-preco="7.00">
           <h3>Button 58mm</h3>
-          <p>Máximo destaque</p>
+          <p>Fundo Metal - Tamanho + resistência</p>
           <div class="preco">R$ 7,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
@@ -830,7 +839,6 @@ Meimei ===================================-->
       });
     });
 
-    // Carrega o carrinho salvo ao abrir a página
     carregarCarrinho();
   </script>
 </body>
