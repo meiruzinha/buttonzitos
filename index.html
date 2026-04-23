@@ -20,6 +20,7 @@ Meimei ===================================-->
       --accent: #0ea5e9;
       --accent-hover: #0284c7;
       --danger: #dc2626;
+      --success: #16a34a;
       --border: #e2e8f0;
       --radius: 12px;
     }
@@ -221,9 +222,10 @@ Meimei ===================================-->
  .btn-danger {
       background: var(--danger);
       color: white;
-      padding: 0.3rem 0.6rem;
-      font-size: 0.75rem;
+      padding: 0.4rem 0.65rem;
+      font-size: 0.85rem;
       width: auto;
+      flex-shrink: 0;
     }
  .btn-danger:hover { background: #b91c1c; transform: none; }
 
@@ -238,11 +240,12 @@ Meimei ===================================-->
       background: var(--card);
       color: var(--text);
       border: 1px solid var(--border);
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       padding: 0;
-      font-size: 1rem;
+      font-size: 1.1rem;
       line-height: 1;
+      flex-shrink: 0;
     }
  .btn-qtd:hover { background: #e2e8f0; transform: none; }
 
@@ -275,6 +278,7 @@ Meimei ===================================-->
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.2s;
+      padding: 0.5rem;
     }
 
  .modal-overlay.active {
@@ -286,9 +290,9 @@ Meimei ===================================-->
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      width: 90%;
-      max-width: 500px;
-      max-height: 85vh;
+      width: 100%;
+      max-width: 700px;
+      max-height: 99vh;
       display: flex;
       flex-direction: column;
       transform: scale(0.9);
@@ -299,11 +303,12 @@ Meimei ===================================-->
  .modal-overlay.active.modal { transform: scale(1); }
 
  .modal-header {
-      padding: 1.25rem;
+      padding: 0.75rem 1rem;
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-shrink: 0;
     }
 
  .modal-header h2 { font-size: 1.2rem; }
@@ -312,59 +317,70 @@ Meimei ===================================-->
       background: none;
       border: none;
       color: var(--text);
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       cursor: pointer;
       line-height: 1;
       padding: 0 0.5rem;
     }
 
  .modal-body {
-      padding: 1rem 1.25rem;
+      padding: 0.75rem 1rem;
       overflow-y: auto;
-      flex-grow: 1;
+      flex: 1 1 auto;
+      min-height: 0;
     }
 
  .cart-empty {
       text-align: center;
       color: var(--text-muted);
-      padding: 2rem 0;
+      padding: 3rem 0;
+      font-size: 1rem;
     }
 
  .cart-item {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.6rem;
       align-items: center;
-      padding: 0.75rem 0;
+      padding: 0.85rem 0;
       border-bottom: 1px solid var(--border);
     }
  .cart-item:last-child { border-bottom: none; }
 
+ .item-info {
+      min-width: 0;
+    }
+
  .item-info h4 {
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.2rem;
       font-size: 0.95rem;
+      word-break: break-word;
     }
  .item-info p {
       color: var(--text-muted);
-      font-size: 0.8rem;
+      font-size: 0.85rem;
     }
 
  .item-actions {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
+      flex-shrink: 0;
     }
 
  .item-qtd {
       color: var(--accent);
-      font-weight: 600;
-      min-width: 25px;
+      font-weight: 700;
+      min-width: 30px;
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 1.05rem;
     }
 
  .modal-footer {
-      padding: 1.25rem;
+      padding: 0.75rem 1rem;
       border-top: 1px solid var(--border);
+      flex-shrink: 0;
+      background: var(--bg);
     }
 
  .cliente-input,.captcha-input {
@@ -372,10 +388,10 @@ Meimei ===================================-->
       background: var(--card);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 0.7rem;
+      padding: 0.65rem;
       border-radius: var(--radius);
-      margin-bottom: 0.75rem;
-      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
       font-family: inherit;
     }
  .cliente-input:focus,.captcha-input:focus {
@@ -386,15 +402,15 @@ Meimei ===================================-->
  .captcha-box {
       background: var(--card);
       border: 1px solid var(--border);
-      padding: 0.85rem;
+      padding: 0.6rem;
       border-radius: var(--radius);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
       text-align: center;
     }
 
  .captcha-pergunta {
-      font-size: 1rem;
-      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
       color: var(--accent);
       font-weight: 600;
     }
@@ -402,33 +418,82 @@ Meimei ===================================-->
  .captcha-erro {
       color: var(--danger);
       font-size: 0.8rem;
-      margin-top: -0.4rem;
-      margin-bottom: 0.4rem;
+      margin-top: -0.25rem;
+      margin-bottom: 0.25rem;
       display: none;
     }
 
  .captcha-erro.show { display: block; }
 
+ .desconto-info {
+      background: #dcfce7;
+      border: 1px solid var(--success);
+      color: var(--success);
+      padding: 0.6rem;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      display: none;
+    }
+ .desconto-info.show { display: block; }
+
+ .aviso-desconto {
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      color: #d97706;
+      padding: 0.6rem;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      display: none;
+    }
+ .aviso-desconto.show { display: block; }
+
  .cart-total {
       display: flex;
       justify-content: space-between;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
+
+ .cart-subtotal {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+      display: none;
+    }
+ .cart-subtotal.show { display: flex; }
+
+ .cart-desconto {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      color: var(--success);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      display: none;
+    }
+ .cart-desconto.show { display: flex; }
 
  .aviso-minimo {
       color: var(--danger);
       font-size: 0.85rem;
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 0.6rem;
       display: none;
     }
  .aviso-minimo.show { display: block; }
 
  .modal-actions {
       display: flex;
-      gap: 0.75rem;
+      gap: 0.6rem;
     }
 
  .modal-actions.btn { flex: 1; }
@@ -459,7 +524,19 @@ Meimei ===================================-->
     @media (max-width: 768px) {
       nav { display: none; }
       #menu-btn { display: block; }
-   .modal { width: 95%; }
+   .modal { width: 100%; max-width: none; max-height: 99vh; }
+   .modal-body { padding: 0.6rem 0.85rem; }
+   .modal-footer { padding: 0.6rem 0.85rem; }
+   .modal-header { padding: 0.6rem 0.85rem; }
+   .cart-item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      padding: 0.7rem 0;
+    }
+   .item-actions {
+      justify-content: space-between;
+      width: 100%;
+    }
     }
   </style>
 </head>
@@ -549,6 +626,16 @@ Meimei ===================================-->
           <input type="number" class="captcha-input" id="captcha-resposta" placeholder="Resposta">
           <div class="captcha-erro" id="captcha-erro">Resposta incorreta!</div>
         </div>
+        <div class="aviso-desconto" id="aviso-desconto"></div>
+        <div class="desconto-info" id="desconto-info">🎉 Desconto de 15% aplicado!</div>
+        <div class="cart-subtotal" id="cart-subtotal">
+          <span>Subtotal:</span>
+          <span id="subtotal-valor">R$ 0,00</span>
+        </div>
+        <div class="cart-desconto" id="cart-desconto">
+          <span>Desconto 15%:</span>
+          <span id="desconto-valor">-R$ 0,00</span>
+        </div>
         <div class="cart-total">
           <span>Total:</span>
           <span id="cart-total">R$ 0,00</span>
@@ -571,6 +658,8 @@ Meimei ===================================-->
   <script>
     const contatoLoja = '5587988116684';
     const PEDIDO_MINIMO = 4;
+    const DESCONTO_QTD_MINIMA = 15;
+    const DESCONTO_PERCENTUAL = 0.15;
 
     const cartCount = document.getElementById('cart-count');
     const cartBtn = document.getElementById('cart');
@@ -584,6 +673,12 @@ Meimei ===================================-->
     const cartItemsEl = document.getElementById('cart-items');
     const cartFooter = document.getElementById('cart-footer');
     const cartTotalEl = document.getElementById('cart-total');
+    const subtotalEl = document.getElementById('cart-subtotal');
+    const subtotalValor = document.getElementById('subtotal-valor');
+    const descontoEl = document.getElementById('cart-desconto');
+    const descontoValor = document.getElementById('desconto-valor');
+    const descontoInfo = document.getElementById('desconto-info');
+    const avisoDesconto = document.getElementById('aviso-desconto');
     const avisoMinimo = document.getElementById('aviso-minimo');
     const limparBtn = document.getElementById('limpar-carrinho');
     const finalizarBtn = document.getElementById('finalizar-compra');
@@ -630,6 +725,22 @@ Meimei ===================================-->
       return carrinho.reduce((acc, item) => acc + item.qtd, 0);
     }
 
+    function getSubtotal() {
+      return carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
+    }
+
+    function getDesconto() {
+      const totalItens = getTotalItens();
+      if (totalItens >= DESCONTO_QTD_MINIMA) {
+        return getSubtotal() * DESCONTO_PERCENTUAL;
+      }
+      return 0;
+    }
+
+    function getTotal() {
+      return getSubtotal() - getDesconto();
+    }
+
     function atualizarContador() {
       const total = getTotalItens();
       cartCount.textContent = total;
@@ -652,7 +763,15 @@ Meimei ===================================-->
       carrinho.forEach(item => {
         msg += `${item.qtd}x ${item.nome} - ${formatarPreco(item.preco * item.qtd)}\n`;
       });
-      const total = carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
+
+      const subtotal = getSubtotal();
+      const desconto = getDesconto();
+      const total = getTotal();
+
+      msg += `\n*Subtotal: ${formatarPreco(subtotal)}*`;
+      if (desconto > 0) {
+        msg += `\n*Desconto 15%: -${formatarPreco(desconto)}*`;
+      }
       msg += `\n*Total: ${formatarPreco(total)}*`;
 
       return `https://wa.me/${contatoLoja}?text=${encodeURIComponent(msg)}`;
@@ -683,10 +802,29 @@ Meimei ===================================-->
         </div>
       `).join('');
 
-      const total = carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
+      const totalItens = getTotalItens();
+      const subtotal = getSubtotal();
+      const desconto = getDesconto();
+      const total = getTotal();
+      const temDesconto = desconto > 0;
+      const faltam = DESCONTO_QTD_MINIMA - totalItens;
+
+      subtotalValor.textContent = formatarPreco(subtotal);
+      descontoValor.textContent = `-${formatarPreco(desconto)}`;
       cartTotalEl.textContent = formatarPreco(total);
 
-      const totalItens = getTotalItens();
+      subtotalEl.classList.toggle('show', temDesconto);
+      descontoEl.classList.toggle('show', temDesconto);
+      descontoInfo.classList.toggle('show', temDesconto);
+      
+      // Aviso de quantos faltam pro desconto
+      if (totalItens > 0 && totalItens < DESCONTO_QTD_MINIMA) {
+        avisoDesconto.textContent = `Faltam ${faltam} button${faltam > 1 ? 's' : ''} pra ganhar 15% OFF!`;
+        avisoDesconto.classList.add('show');
+      } else {
+        avisoDesconto.classList.remove('show');
+      }
+
       const podeFinalizar = totalItens >= PEDIDO_MINIMO;
       finalizarBtn.disabled =!podeFinalizar;
       avisoMinimo.classList.toggle('show',!podeFinalizar);
