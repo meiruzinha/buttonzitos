@@ -295,21 +295,33 @@ Meimei ===================================-->
  .btn-qtd:hover { background: #e2e8f0; transform: none; }
 
  .toast {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: var(--card);
-      border: 1px solid var(--accent);
-      padding: 1rem 1.5rem;
-      border-radius: var(--radius);
-      transform: translateX(400px);
-      transition: transform 0.3s;
-      z-index: 200;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  right: auto;
+  max-width: calc(100vw - 4rem);
+  background: var(--card);
+  border: 1px solid var(--accent);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius);
+  transform: translateX(-120%);
+  transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
+  z-index: 200;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  word-break: break-word;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
 
- .toast.error { border-color: var(--danger); }
- .toast.show { transform: translateX(0); }
+.toast.show { 
+  transform: translateX(0); 
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+}
+
+.toast.error { border-color: var(--danger); }
 
  .modal-overlay {
       position: fixed;
@@ -637,45 +649,66 @@ Meimei ===================================-->
       <div class="produtos">
         <div class="produto" data-id="32p" data-nome="Button 32mm - Fundo Plástico" data-preco="4.00">
           <h3>Button 32mm - Fundo Plástico </h3>
-          <p>Leve e econômico</p>
+          <p>Leve e econômico, ideal para ações promocionais, distribuição em eventos e grandes tiragens.</p>
           <div class="preco">R$ 4,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
 
         <div class="produto" data-id="44p" data-nome="Button 44mm - Fundo Plástico" data-preco="5.00">
           <h3>Button 44mm - Fundo Plástico</h3>
-          <p>Mais vendido</p>
+          <p>Versátil e de excelente custo-benefício para campanhas, lançamentos e identificação visual.</p>
           <div class="preco">R$ 5,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
 
         <div class="produto" data-id="58p" data-nome="Button 58mm - Fundo Plástico" data-preco="6.00">
           <h3>Button 58mm - Fundo Plástico </h3>
-          <p>Máximo destaque</p>
+          <p>Recomendado para máxima exposição da marca em materiais gráficos e campanhas pontuais.</p>
           <div class="preco">R$ 6,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
 
 <div class="produto" data-id="32m" data-nome="Button 32mm - Fundo Metal" data-preco="5.00">
           <h3>Button 32mm - Fundo Metal</h3>
-          <p>Premium e resistente</p>
+          <p>Acabamento premium indicado para brindes institucionais e aplicações que exigem apresentação superior.</p>
           <div class="preco">R$ 5,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
 
 <div class="produto" data-id="44m" data-nome="Button 44mm - Fundo Metal" data-preco="6.00">
           <h3>Button 44mm - Fundo Metal </h3>
-          <p>Qualidade superior</p>
+          <p>Alia padrão de mercado com acabamento diferenciado para uso profissional.</p>
           <div class="preco">R$ 6,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
 
         <div class="produto" data-id="58m" data-nome="Button 58mm - Fundo Metal" data-preco="7.00">
           <h3>Button 58mm - Fundo Metal</h3>
-          <p> Tamanho + resistência</p>
+          <p> Combina grande área de impressão com acabamento de alto padrão para materiais institucionais.</p>
           <div class="preco">R$ 7,00</div>
           <button class="btn add-cart">Adicionar ao carrinho</button>
         </div>
+
+<div class="produto" data-id="espelho58p" data-nome="Button Espelho de Bolsa 58mm - Fundo Plástico" data-preco="9.00">
+  <h3>Button Espelho de Bolsa 58mm</h3>
+  <p>Funcionalidade dupla: Com espelho embutido no verso. Produto utilitário para brindes.</p>
+  <div class="preco">R$ 9,00</div>
+  <button class="btn add-cart">Adicionar ao carrinho</button>
+</div>
+
+<div class="produto" data-id="nfc44m" data-nome="Button NFC 44mm - Fundo Metal" data-preco="13.00">
+  <h3>Button NFC 44mm - Fundo Metal</h3>
+  <p>NFC integrado. Permite acesso digital via aproximação de smartphone.</p>
+  <div class="preco">R$ 13,00</div>
+  <button class="btn add-cart">Adicionar ao carrinho</button>
+</div>
+
+<div class="produto" data-id="nfc58mp" data-nome="Button NFC 58mm - Fundo Metal/Plástico" data-preco="17.00">
+  <h3>Button NFC 58mm - Metal/Plástico</h3>
+  <p>NFC integrado. Ideal para interatividade com maior destaque visual.</p>
+  <div class="preco">R$ 17,00</div>
+  <button class="btn add-cart">Adicionar ao carrinho</button>
+</div>
       </div>
     </section>
 
@@ -751,6 +784,10 @@ Meimei ===================================-->
     const DESCONTO_QTD_MINIMA = 15;
     const DESCONTO_PERCENTUAL = 0.15;
 
+    let carrinho = [];
+    let captchaValor = 0;
+    let toastTimeout = null;
+
     const toast = document.getElementById('toast');
     const addButtons = document.querySelectorAll('.add-cart');
     const menuBtn = document.getElementById('menu-btn');
@@ -776,9 +813,6 @@ Meimei ===================================-->
     const captchaPergunta = document.getElementById('captcha-pergunta');
     const captchaResposta = document.getElementById('captcha-resposta');
     const captchaErro = document.getElementById('captcha-erro');
-
-    let carrinho = [];
-    let captchaValor = 0;
 
     function salvarCarrinho() {
       localStorage.setItem('buttonzitos_carrinho', JSON.stringify(carrinho));
@@ -839,10 +873,21 @@ Meimei ===================================-->
     }
 
     function mostrarToast(msg, erro = false) {
+      if (toastTimeout) {
+        clearTimeout(toastTimeout);
+        toastTimeout = null;
+      }
+      
+      toast.classList.remove('show');
+      void toast.offsetWidth;
+      
       toast.textContent = msg;
       toast.classList.toggle('error', erro);
       toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2000);
+      
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
     }
 
     function gerarLinkWpp() {
@@ -908,15 +953,15 @@ Meimei ===================================-->
       descontoInfo.classList.toggle('show', temDesconto);
       
       if (totalItens > 0 && totalItens < DESCONTO_QTD_MINIMA) {
-        avisoDesconto.textContent = `Faltam ${faltam} button${faltam > 1 ? 's' : ''} pra ganhar 15% OFF!`;
-        avisoDesconto.classList.add('show');
-      } else {
-        avisoDesconto.classList.remove('show');
-      }
+  avisoDesconto.textContent = `Faltam ${faltam} button${faltam > 1 ? 's' : ''} pra ganhar 15% OFF!`;
+  avisoDesconto.classList.add('show');
+} else {
+  avisoDesconto.classList.remove('show');
+}
 
-      const podeFinalizar = totalItens >= PEDIDO_MINIMO;
-      finalizarBtn.disabled = !podeFinalizar;
-      avisoMinimo.classList.toggle('show', !podeFinalizar);
+const podeFinalizar = totalItens >= PEDIDO_MINIMO;
+finalizarBtn.disabled = !podeFinalizar;
+avisoMinimo.classList.toggle('show', !podeFinalizar);
 
       document.querySelectorAll('.aumentar-qtd').forEach(btn => {
         btn.addEventListener('click', e => {
@@ -959,8 +1004,8 @@ Meimei ===================================-->
           removerDoCarrinho(id);
         } else if (item.qtd > 99) {
           item.qtd = 99;
-          mostrarToast('Limite de 99 unidades', true);       
- atualizarContador();
+          mostrarToast('Limite de 99 unidades', true);
+          atualizarContador();
           renderizarCarrinho();
         } else {
           atualizarContador();
@@ -968,6 +1013,7 @@ Meimei ===================================-->
         }
       }
     }
+    
     function removerDoCarrinho(id) {
       const index = carrinho.findIndex(item => item.id === id);
       if (index > -1) {
@@ -1034,12 +1080,12 @@ Meimei ===================================-->
       }
 
       const resposta = parseInt(captchaResposta.value);
-      if (resposta !== captchaValor) { 
-        captchaErro.classList.add('show');  
-        captchaResposta.focus();  
-        mostrarToast('Captcha incorreto!', true);  
-        return; 
-      } 
+      if (resposta !== captchaValor) {
+        captchaErro.classList.add('show');
+        captchaResposta.focus();
+        mostrarToast('Captcha incorreto!', true);
+        return;
+      }
 
       captchaErro.classList.remove('show');
       window.open(gerarLinkWpp(), '_blank');
