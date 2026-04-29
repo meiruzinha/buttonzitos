@@ -61,11 +61,15 @@ Meimei ===================================-->
     }
 
  .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-weight: 400;
-      font-size: 1.8rem;
-      color: #fff;
-      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      height: 100%; 
+    }
+
+ .logo img {
+      height: 65px; /* Altura ideal para não distorcer o header */
+      width: auto;  
+      display: block;
     }
 
  .header-right {
@@ -627,8 +631,9 @@ Meimei ===================================-->
 </div>
 
   <header>
-    <div class="logo">Buttonzitos </div>
-    <div class="header-right">
+    <div class="logo">
+    <img src="logo.png.png" alt="Buttonzitos">
+</div>
       <button id="menu-btn">☰</button>
         <nav id="nav">
   <a href="#inicio">Início</a>
