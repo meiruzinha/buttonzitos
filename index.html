@@ -294,16 +294,6 @@ img {
       transform: none;
     }
 
- .btn-danger {
-      background: var(--danger);
-      color: white;
-      padding: 0.4rem 0.65rem;
-      font-size: 0.85rem;
-      width: auto;
-      flex-shrink: 0;
-    }
- .btn-danger:hover { background: #b91c1c; transform: none; }
-
  .btn-outline {
       background: transparent;
       border: 1px solid var(--border);
@@ -311,29 +301,37 @@ img {
     }
  .btn-outline:hover { background: var(--card); transform: none; }
 
- .btn-qtd {
+.btn-qtd {
   background: var(--card);
   color: var(--text);
   border: 1px solid var(--border);
-  width: 26px; /* era 30px */
-  height: 26px; /* era 30px */
+  width: 26px;
+  height: 26px;
   padding: 0;
-  font-size: 1rem; /* era 1.1rem */
+  font-size: 1rem;
   line-height: 1;
-  flex-shrink: 0;
-  border-radius: 6px; /* deixa menos redondo */
-}
-.btn-qtd:hover { background: #e2e8f0; transform: none; }
-
-.btn-danger {
-  background: var(--danger);
-  color: white;
-  padding: 0.25rem 0.5rem; /* era 0.4rem 0.65rem */
-  font-size: 0.8rem; /* era 0.85rem */
-  width: auto;
   flex-shrink: 0;
   border-radius: 6px;
 }
+.btn-qtd:hover { background: #e2e8f0; transform: none; }
+
+.btn.btn-danger.remover-item {
+  background: var(--danger);
+  color: white;
+  padding: 0;
+  font-size: 1rem;
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  max-width: 26px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.btn.btn-danger.remover-item:hover { background: #b91c1c; transform: none; }
 
  .toast {
   position: fixed;
