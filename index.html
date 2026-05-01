@@ -123,29 +123,29 @@ img {
     }
 
  .carrinho-float {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 99;
-      width: 56px;
-      height: 56px;
-      background: #000;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
- .carrinho-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
-    }
- .carrinho-float-icon { 
-      font-size: 1.5rem; 
-      filter: invert(1); 
-    }
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 99;
+  width: 56px;
+  height: 56px;
+  background: #92dcfd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.carrinho-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(146, 220, 253, 0.6);
+}
+.carrinho-float-icon { 
+  font-size: 1.5rem; 
+  filter: invert(0); 
+}
  .carrinho-float-count {
       position: absolute;
       top: -2px;
@@ -166,19 +166,11 @@ img {
  .carrinho-float-count.active { transform: scale(1); }
 
  .hero {
-      text-align: center;
-      padding: 4rem 0 3rem;
-      width: 100%;
-      background: linear-gradient(-45deg, #ffc8dd, #bde0fe, #c8e6c9, #fff3b0, #ffd6e8, #a2d2ff, #d4e7c5, #ffcad4);
-      background-size: 400% 400%;
-      animation: aurora 14s ease infinite;
-    }
-
-    @keyframes aurora {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+  text-align: center;
+  padding: 4rem 0 3rem;
+  width: 100%;
+  background: linear-gradient(135deg, #ffc8dd, #bde0fe);
+}
 
  .hero h1 {
       font-size: clamp(2rem, 5vw, 3rem);
@@ -699,12 +691,14 @@ body { position: relative; }
 
   <main>
     <section class="hero" id="inicio">
-      <h1>Buttons Personalizados</h1>
-      <p>Escolha seu tamanho favorito e personalize</p>
-    </section>
+  <img src="banner-hero.png" alt="Buttonzitos - Buttons Personalizados" style="max-width: 700px; width: 90%; height: auto; margin: 0 auto 1rem; display: block;" draggable="false">
+  <p>Escolha seu tamanho favorito e personalize!</p>
+</section>
 
     <section id="buttons">
-  <h2>Buttons</h2>
+  <h2>
+  <img src="icone-buttons.png" alt="Buttons" style="width: 100%; max-width: 170px; height: auto;" draggable="false">
+</h2>
   <div class="produtos">
     
     <div class="produto" data-id="32p" data-nome="Button 32mm - Fundo Plástico" data-preco="4.00">
