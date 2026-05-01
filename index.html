@@ -312,17 +312,28 @@ img {
  .btn-outline:hover { background: var(--card); transform: none; }
 
  .btn-qtd {
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid var(--border);
-      width: 30px;
-      height: 30px;
-      padding: 0;
-      font-size: 1.1rem;
-      line-height: 1;
-      flex-shrink: 0;
-    }
- .btn-qtd:hover { background: #e2e8f0; transform: none; }
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  width: 26px; /* era 30px */
+  height: 26px; /* era 30px */
+  padding: 0;
+  font-size: 1rem; /* era 1.1rem */
+  line-height: 1;
+  flex-shrink: 0;
+  border-radius: 6px; /* deixa menos redondo */
+}
+.btn-qtd:hover { background: #e2e8f0; transform: none; }
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+  padding: 0.25rem 0.5rem; /* era 0.4rem 0.65rem */
+  font-size: 0.8rem; /* era 0.85rem */
+  width: auto;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
 
  .toast {
   position: fixed;
@@ -449,19 +460,18 @@ img {
     }
 
  .item-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-shrink: 0;
-    }
+  display: flex;
+  align-items: center;
+  gap: 0.4rem; 
+  flex-shrink: 0;
+}
 
- .item-qtd {
-      color: var(--accent);
-      font-weight: 700;
-      min-width: 30px;
-      text-align: center;
-      font-size: 1.05rem;
-    }
+.item-qtd {
+  color: var(--accent);
+  font-weight: 700;
+  min-width: 24px; 
+  text-align: center;
+  font-size: 0.95rem; }
 
  .modal-footer {
       padding: 0.75rem 1rem;
