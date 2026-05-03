@@ -5,7 +5,6 @@ Meimei -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
   <link rel="icon" type="image/png" href="favicon.png"> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,13 +27,13 @@ Meimei -->
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-img {
-  -webkit-user-drag: none;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
+    img {
+      -webkit-user-drag: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
     html, body { overflow-x: hidden; }
 
     body {
@@ -57,6 +56,25 @@ img {
 
     body.modal-open { overflow: hidden; }
 
+    .banner-desconto-topo {
+  background: #c084fc;
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  width: 100%;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+    @media (max-width: 768px) {
+      .banner-desconto-topo {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+
     header {
       position: sticky;
       top: 0;
@@ -68,19 +86,19 @@ img {
       z-index: 10;
     }
 
- .logo {
+    .logo {
       display: flex;
       align-items: center;
       height: 100%; 
     }
 
- .logo img {
+    .logo img {
       height: 90px; 
       width: auto;  
       display: block;
     }
 
- .header-right {
+    .header-right {
       display: flex;
       align-items: center;
       gap: 1.5rem;
@@ -95,58 +113,31 @@ img {
     }
     nav a:hover { color: var(--accent); }
 
- .instagram-float {
+    .carrinho-float {
       position: fixed;
       right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
+      bottom: 20px;
       z-index: 99;
       width: 56px;
       height: 56px;
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      background: #92dcfd;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
       transition: all 0.3s;
-      text-decoration: none;
     }
- .instagram-float:hover {
-      transform: translateY(-50%) scale(1.1);
-      box-shadow: 0 6px 20px rgba(255, 200, 221, 0.6);
+    .carrinho-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(146, 220, 253, 0.6);
     }
- .instagram-float svg {
-      width: 28px;
-      height: 28px;
-      fill: #fff;
+    .carrinho-float-icon { 
+      font-size: 1.5rem; 
+      filter: invert(0); 
     }
-
- .carrinho-float {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 99;
-  width: 56px;
-  height: 56px;
-  background: #92dcfd;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.carrinho-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(146, 220, 253, 0.6);
-}
-.carrinho-float-icon { 
-  font-size: 1.5rem; 
-  filter: invert(0); 
-}
- .carrinho-float-count {
+    .carrinho-float-count {
       position: absolute;
       top: -2px;
       right: -2px;
@@ -163,16 +154,16 @@ img {
       transform: scale(0);
       transition: transform 0.2s;
     }
- .carrinho-float-count.active { transform: scale(1); }
+    .carrinho-float-count.active { transform: scale(1); }
 
- .hero {
-  text-align: center;
-  padding: 4rem 0 3rem;
-  width: 100%;
-  background: linear-gradient(135deg, #ffc8dd, #bde0fe);
-}
+    .hero {
+      text-align: center;
+      padding: 4rem 0 3rem;
+      width: 100%;
+      background: linear-gradient(135deg, #ffc8dd, #bde0fe);
+    }
 
- .hero h1 {
+    .hero h1 {
       font-size: clamp(2rem, 5vw, 3rem);
       margin-bottom: 0.5rem;
       color: #000;
@@ -181,7 +172,7 @@ img {
       margin-right: auto;
       padding: 0 5%;
     }
- .hero p {
+    .hero p {
       color: #1e293b;
       font-weight: 500;
       max-width: 1100px;
@@ -203,166 +194,166 @@ img {
 
     h2 { font-size: 2rem; margin-bottom: 0.5rem; }
 
- .produtos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* era 200px */
-  gap: 1.25rem;
-  margin-top: 2rem;
-  align-items: stretch;
-}
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+      align-items: stretch;
+    }
 
-.produto {
-  background: #fff;
-  padding: 1rem; /* era 0.75rem */
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  display: flex;
-  flex-direction: row;
-  gap: 1rem; /* era 0.75rem */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  align-items: center;
-}
+    .produto {
+      background: #fff;
+      padding: 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      align-items: center;
+    }
 
-.produto-img {
-  flex: 0 0 140px;
-  width: 140px;
-  height: auto; /* altura se ajusta */
-}
+    .produto-img {
+      flex: 0 0 140px;
+      width: 140px;
+      height: auto;
+    }
 
-.produto-img img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
-}
+    .produto-img img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
 
-.produto-conteudo {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+    .produto-conteudo {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-.produto h3 {
-  color: #000;
-  margin-bottom: 0.25rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
+    .produto h3 {
+      color: #000;
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
 
- .produto p {
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
-  flex-grow: 1;
-  font-size: 0.8rem;
-  line-height: 1.4;
-}
+    .produto p {
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      flex-grow: 1;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
 
- .preco {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: var(--text);
-}
+    .preco {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
 
- .btn {
-  background: #000;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: var(--radius);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  width: fit-content;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  font-size: 0.85rem;
-} 
+    .btn {
+      background: #000;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: fit-content;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      font-size: 0.85rem;
+    } 
 
- .btn:hover {
+    .btn:hover {
       background: #1e293b;
       transform: translateY(-2px);
     }
- .btn:active { transform: translateY(0); }
- .btn:disabled {
+    .btn:active { transform: translateY(0); }
+    .btn:disabled {
       opacity: 0.5;
       cursor: not-allowed;
       transform: none;
     }
 
- .btn-outline {
+    .btn-outline {
       background: transparent;
       border: 1px solid var(--border);
       color: var(--text);
     }
- .btn-outline:hover { background: var(--card); transform: none; }
+    .btn-outline:hover { background: var(--card); transform: none; }
 
-.btn-qtd {
-  background: var(--card);
-  color: var(--text);
-  border: 1px solid var(--border);
-  width: 26px;
-  height: 26px;
-  padding: 0;
-  font-size: 1rem;
-  line-height: 1;
-  flex-shrink: 0;
-  border-radius: 6px;
-}
-.btn-qtd:hover { background: #e2e8f0; transform: none; }
+    .btn-qtd {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      width: 26px;
+      height: 26px;
+      padding: 0;
+      font-size: 1rem;
+      line-height: 1;
+      flex-shrink: 0;
+      border-radius: 6px;
+    }
+    .btn-qtd:hover { background: #e2e8f0; transform: none; }
 
-.btn.btn-danger.remover-item {
-  background: var(--danger);
-  color: white;
-  padding: 0;
-  font-size: 1rem;
-  width: 26px;
-  height: 26px;
-  min-width: 26px;
-  max-width: 26px;
-  flex-shrink: 0;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-.btn.btn-danger.remover-item:hover { background: #b91c1c; transform: none; }
+    .btn.btn-danger.remover-item {
+      background: var(--danger);
+      color: white;
+      padding: 0;
+      font-size: 1rem;
+      width: 26px;
+      height: 26px;
+      min-width: 26px;
+      max-width: 26px;
+      flex-shrink: 0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .btn.btn-danger.remover-item:hover { background: #b91c1c; transform: none; }
 
- .toast {
-  position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  right: auto;
-  max-width: calc(100vw - 4rem);
-  background: var(--card);
-  border: 1px solid var(--accent);
-  padding: 1rem 1.5rem;
-  border-radius: var(--radius);
-  transform: translateX(-120%);
-  transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
-  z-index: 200;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  word-break: break-word;
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      right: auto;
+      max-width: calc(100vw - 4rem);
+      background: var(--card);
+      border: 1px solid var(--accent);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius);
+      transform: translateX(-120%);
+      transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
+      z-index: 200;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      word-break: break-word;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
 
-.toast.show { 
-  transform: translateX(0); 
-  opacity: 1;
-  pointer-events: all;
-  visibility: visible;
-}
+    .toast.show { 
+      transform: translateX(0); 
+      opacity: 1;
+      pointer-events: all;
+      visibility: visible;
+    }
 
-.toast.error { border-color: var(--danger); }
+    .toast.error { border-color: var(--danger); }
 
- .modal-overlay {
+    .modal-overlay {
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.4);
@@ -377,12 +368,12 @@ img {
       padding: 0.5rem;
     }
 
- .modal-overlay.active {
+    .modal-overlay.active {
       opacity: 1;
       pointer-events: all;
     }
 
- .modal {
+    .modal {
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -396,9 +387,9 @@ img {
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
     }
 
- .modal-overlay.active .modal { transform: scale(1); }
+    .modal-overlay.active .modal { transform: scale(1); }
 
- .modal-header {
+    .modal-header {
       padding: 0.75rem 1rem;
       border-bottom: 1px solid var(--border);
       display: flex;
@@ -407,9 +398,9 @@ img {
       flex-shrink: 0;
     }
 
- .modal-header h2 { font-size: 1.2rem; }
+    .modal-header h2 { font-size: 1.2rem; }
 
- .close-modal {
+    .close-modal {
       background: none;
       border: none;
       color: var(--text);
@@ -419,21 +410,21 @@ img {
       padding: 0 0.5rem;
     }
 
- .modal-body {
+    .modal-body {
       padding: 0.75rem 1rem;
       overflow-y: auto;
       flex: 1 1 auto;
       min-height: 0;
     }
 
- .cart-empty {
+    .cart-empty {
       text-align: center;
       color: var(--text-muted);
       padding: 3rem 0;
       font-size: 1rem;
     }
 
- .cart-item {
+    .cart-item {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 0.5rem;
@@ -441,44 +432,45 @@ img {
       padding: 0.6rem 0;
       border-bottom: 1px solid var(--border);
     }
- .cart-item:last-child { border-bottom: none; }
+    .cart-item:last-child { border-bottom: none; }
 
- .item-info {
+    .item-info {
       min-width: 0;
     }
 
- .item-info h4 {
+    .item-info h4 {
       margin-bottom: 0.1rem;
       font-size: 0.9rem;
       word-break: break-word;
     }
- .item-info p {
+    .item-info p {
       color: var(--text-muted);
       font-size: 0.8rem;
     }
 
- .item-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem; 
-  flex-shrink: 0;
-}
+    .item-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem; 
+      flex-shrink: 0;
+    }
 
-.item-qtd {
-  color: var(--accent);
-  font-weight: 700;
-  min-width: 24px; 
-  text-align: center;
-  font-size: 0.95rem; }
+    .item-qtd {
+      color: var(--accent);
+      font-weight: 700;
+      min-width: 24px; 
+      text-align: center;
+      font-size: 0.95rem; 
+    }
 
- .modal-footer {
+    .modal-footer {
       padding: 0.75rem 1rem;
       border-top: 1px solid var(--border);
       flex-shrink: 0;
       background: var(--bg);
     }
 
- .cliente-input,.captcha-input {
+    .cliente-input,.captcha-input {
       width: 100%;
       background: var(--card);
       border: 1px solid var(--border);
@@ -489,12 +481,12 @@ img {
       font-size: 14px;
       font-family: inherit;
     }
- .cliente-input:focus,.captcha-input:focus {
+    .cliente-input:focus,.captcha-input:focus {
       outline: none;
       border-color: var(--accent);
     }
 
- .captcha-box {
+    .captcha-box {
       background: var(--card);
       border: 1px solid var(--border);
       padding: 0.4rem;
@@ -503,14 +495,14 @@ img {
       text-align: center;
     }
 
- .captcha-pergunta {
+    .captcha-pergunta {
       font-size: 0.8rem;
       margin-bottom: 0.3rem;
       color: var(--accent);
       font-weight: 600;
     }
 
- .captcha-erro {
+    .captcha-erro {
       color: var(--danger);
       font-size: 0.8rem;
       margin-top: -0.25rem;
@@ -518,9 +510,9 @@ img {
       display: none;
     }
 
- .captcha-erro.show { display: block; }
+    .captcha-erro.show { display: block; }
 
- .desconto-info {
+    .desconto-info {
       background: #dcfce7;
       border: 1px solid var(--success);
       color: var(--success);
@@ -532,9 +524,9 @@ img {
       margin-bottom: 0.4rem;
       display: none;
     }
- .desconto-info.show { display: block; }
+    .desconto-info.show { display: block; }
 
- .aviso-desconto {
+    .aviso-desconto {
       background: #fef3c7;
       border: 1px solid #f59e0b;
       color: #d97706;
@@ -546,9 +538,9 @@ img {
       margin-bottom: 0.4rem;
       display: none;
     }
- .aviso-desconto.show { display: block; }
+    .aviso-desconto.show { display: block; }
 
- .cart-total {
+    .cart-total {
       display: flex;
       justify-content: space-between;
       font-size: 1.2rem;
@@ -556,7 +548,7 @@ img {
       margin-bottom: 0.25rem;
     }
 
- .cart-subtotal {
+    .cart-subtotal {
       display: flex;
       justify-content: space-between;
       font-size: 0.85rem;
@@ -564,9 +556,9 @@ img {
       margin-bottom: 0.2rem;
       display: none;
     }
- .cart-subtotal.show { display: flex; }
+    .cart-subtotal.show { display: flex; }
 
- .cart-desconto {
+    .cart-desconto {
       display: flex;
       justify-content: space-between;
       font-size: 0.85rem;
@@ -575,23 +567,23 @@ img {
       font-weight: 600;
       display: none;
     }
- .cart-desconto.show { display: flex; }
+    .cart-desconto.show { display: flex; }
 
- .aviso-minimo {
+    .aviso-minimo {
       color: var(--danger);
       font-size: 0.85rem;
       text-align: center;
       margin-bottom: 0.6rem;
       display: none;
     }
- .aviso-minimo.show { display: block; }
+    .aviso-minimo.show { display: block; }
 
- .modal-actions {
+    .modal-actions {
       display: flex;
       gap: 0.6rem;
     }
 
- .modal-actions .btn { flex: 1; }
+    .modal-actions .btn { flex: 1; }
 
     footer {
       text-align: center;
@@ -617,208 +609,192 @@ img {
     #menu-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; }
 
     @media (max-width: 768px) {
-body { position: relative; }
+      body { position: relative; }
       nav { display: none; }
       #menu-btn { display: block; }
-   .modal { width: 100%; max-width: none; max-height: 85vh; }
-   .modal-body { padding: 0.5rem 0.75rem; }
-   .modal-footer { padding: 0.5rem 0.75rem; }
-   .modal-header { padding: 0.5rem 0.75rem; }
-   .cart-item {
-      grid-template-columns: 1fr;
-      gap: 0.4rem;
-      padding: 0.6rem 0;
+      .modal { width: 100%; max-width: none; max-height: 85vh; }
+      .modal-body { padding: 0.5rem 0.75rem; }
+      .modal-footer { padding: 0.5rem 0.75rem; }
+      .modal-header { padding: 0.5rem 0.75rem; }
+      .cart-item {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+        padding: 0.6rem 0;
+      }
+      .item-actions {
+        justify-content: space-between;
+        width: 100%;
+      }
+      .btn-qtd {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 0.9rem !important;
+        border-radius: 4px;
+      }
+      .btn.btn-danger.remover-item {
+        padding: 0 !important;
+        font-size: 0.9rem !important;
+        width: 22px !important;
+        height: 22px !important;
+        min-width: 22px !important;
+        max-width: 22px !important;
+        line-height: 1 !important;
+        border-radius: 4px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+      }
+      .item-qtd {
+        min-width: 20px;
+        font-size: 0.9rem;
+      }
+      .item-actions {
+        gap: 0.3rem;
+      }
+      .carrinho-float {
+        width: 50px;
+        height: 50px;
+        right: 15px;
+        bottom: 15px;
+      }
+      .produto {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .produto-img {
+        width: 100%;
+        height: auto;
+        flex: none;
+      }
+      .produto-img img {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+        object-fit: contain;
+      }
+      .btn {
+        width: 100%;
+      }
     }
-   .item-actions {
-      justify-content: space-between;
-      width: 100%;
-    }
-.btn-qtd {
-  width: 22px !important;
-  height: 22px !important;
-  font-size: 0.9rem !important;
-  border-radius: 4px;
-}
-
-.btn.btn-danger.remover-item {
-  padding: 0 !important;
-  font-size: 0.9rem !important;
-  width: 22px !important;
-  height: 22px !important;
-  min-width: 22px !important;
-  max-width: 22px !important;
-  line-height: 1 !important;
-  border-radius: 4px;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
-
-.item-qtd {
-  min-width: 20px;
-  font-size: 0.9rem;
-}
-
-.item-actions {
-  gap: 0.3rem;
-}
-
-   .instagram-float {
-      width: 50px;
-      height: 50px;
-      right: 15px;
-    }
-   .instagram-float svg {
-      width: 24px;
-      height: 24px;
-    }
-   .carrinho-float {
-      width: 50px;
-      height: 50px;
-      right: 15px;
-      bottom: 15px;
-    }
-.produto {
-  flex-direction: column;
-  align-items: stretch;
-}
-.produto-img {
-  width: 100%;
-  height: auto;
-  flex: none;
-}
-.produto-img img {
-  width: 100%;
-  height: auto;
-  max-height: 200px;
-  object-fit: contain;
-}
-.btn {
-  width: 100%;
-}
-}
   </style>
 </head>
 <body>
-<a href="https://instagram.com/buttonzitos" target="_blank" class="instagram-float" aria-label="Instagram">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" stroke-width="2" fill="none"/>
-    <circle cx="12" cy="12" r="4" stroke="white" stroke-width="2" fill="none"/>
-    <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
-  </svg>
-</a>
+  <div class="banner-desconto-topo">
+    🎉 15% OFF em pedidos acima de 15 buttons
+  </div>
 
-<div class="carrinho-float" id="carrinho-float">
-  <span class="carrinho-float-icon">🛒</span>
-  <span class="carrinho-float-count" id="carrinho-float-count">0</span>
-</div>
+  <div class="carrinho-float" id="carrinho-float">
+    <span class="carrinho-float-icon">🛒</span>
+    <span class="carrinho-float-count" id="carrinho-float-count">0</span>
+  </div>
 
   <header>
-  <div class="logo">
-    <img src="logo.png" alt="Buttonzitos" draggable="false">
-  </div>
-  <div class="header-right">
-    <button id="menu-btn">☰</button>
-    <nav id="nav">
-      <a href="#inicio">Início</a>
-      <a href="#buttons">Buttons</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-  </div>
-</header>
+    <div class="logo">
+      <img src="logo.png" alt="Buttonzitos" draggable="false">
+    </div>
+    <div class="header-right">
+      <button id="menu-btn">☰</button>
+      <nav id="nav">
+        <a href="#inicio">Início</a>
+        <a href="#buttons">Buttons</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
 
   <main>
     <section class="hero" id="inicio">
-  <img src="banner-hero.png" alt="Buttonzitos - Buttons Personalizados" style="max-width: 700px; width: 90%; height: auto; margin: 0 auto 1rem; display: block;" draggable="false">
-  <p>Escolha seu tamanho favorito e personalize!</p>
-</section>
+      <img src="banner-hero.png" alt="Buttonzitos - Buttons Personalizados" style="max-width: 700px; width: 90%; height: auto; margin: 0 auto 1rem; display: block;" draggable="false">
+      <p>Escolha seu tamanho favorito e personalize!</p>
+    </section>
 
     <section id="buttons">
-  <h2>
-  <img src="icone-buttons.png" alt="Buttons" style="width: 100%; max-width: 170px; height: auto;" draggable="false">
-</h2>
-  <div class="produtos">
-    
-    <div class="produto" data-id="32p" data-nome="Button 32mm - Fundo Plástico" data-preco="4.00">
-      <div class="produto-img">
-        <img src="32p.jpg" alt="Button 32mm Fundo Plástico" draggable="false">
-      </div>
-      <div class="produto-conteudo">
-        <h3>Button 32mm - Fundo Plástico</h3>
-        <p>Leve e econômico, ideal para ações promocionais, distribuição em eventos e grandes tiragens.</p>
-        <div class="preco">R$ 4,00</div>
-        <button class="btn add-cart">Adicionar ao carrinho</button>
-      </div>
-    </div>
+      <h2>
+        <img src="icone-buttons.png" alt="Buttons" style="width: 100%; max-width: 170px; height: auto;" draggable="false">
+      </h2>
+      <div class="produtos">
+        
+        <div class="produto" data-id="32p" data-nome="Button 32mm - Fundo Plástico" data-preco="4.00">
+          <div class="produto-img">
+            <img src="32p.jpg" alt="Button 32mm Fundo Plástico" draggable="false">
+          </div>
+          <div class="produto-conteudo">
+            <h3>Button 32mm - Fundo Plástico</h3>
+            <p>Leve e econômico, ideal para ações promocionais, distribuição em eventos e grandes tiragens.</p>
+            <div class="preco">R$ 4,00</div>
+            <button class="btn add-cart">Adicionar ao carrinho</button>
+          </div>
+        </div>
 
-    <div class="produto" data-id="32m" data-nome="Button 32mm - Fundo Metal" data-preco="5.00">
-      <div class="produto-img">
-        <img src="32m.jpg" alt="Button 32mm Fundo Metal" draggable="false">
-      </div>
-      <div class="produto-conteudo">
-        <h3>Button 32mm - Fundo Metal</h3>
-        <p>Acabamento premium indicado para brindes institucionais e aplicações que exigem apresentação superior.</p>
-        <div class="preco">R$ 5,00</div>
-        <button class="btn add-cart">Adicionar ao carrinho</button>
-      </div>
-    </div>
+        <div class="produto" data-id="32m" data-nome="Button 32mm - Fundo Metal" data-preco="5.00">
+          <div class="produto-img">
+            <img src="32m.jpg" alt="Button 32mm Fundo Metal" draggable="false">
+          </div>
+          <div class="produto-conteudo">
+            <h3>Button 32mm - Fundo Metal</h3>
+            <p>Acabamento premium indicado para brindes institucionais e aplicações que exigem apresentação superior.</p>
+            <div class="preco">R$ 5,00</div>
+            <button class="btn add-cart">Adicionar ao carrinho</button>
+          </div>
+        </div>
 
-    <div class="produto" data-id="44p" data-nome="Button 44mm - Fundo Plástico" data-preco="5.00">
-      <div class="produto-img">
-        <img src="44p.jpg" alt="Button 44mm Fundo Plástico" draggable="false">
-      </div>
-      <div class="produto-conteudo">
-        <h3>Button 44mm - Fundo Plástico</h3>
-        <p>Versátil e de excelente custo-benefício para campanhas, lançamentos e identificação visual.</p>
-        <div class="preco">R$ 5,00</div>
-        <button class="btn add-cart">Adicionar ao carrinho</button>
-      </div>
-    </div>
+        <div class="produto" data-id="44p" data-nome="Button 44mm - Fundo Plástico" data-preco="5.00">
+          <div class="produto-img">
+            <img src="44p.jpg" alt="Button 44mm Fundo Plástico" draggable="false">
+          </div>
+          <div class="produto-conteudo">
+            <h3>Button 44mm - Fundo Plástico</h3>
+            <p>Versátil e de excelente custo-benefício para campanhas, lançamentos e identificação visual.</p>
+            <div class="preco">R$ 5,00</div>
+            <button class="btn add-cart">Adicionar ao carrinho</button>
+          </div>
+        </div>
 
-    <div class="produto" data-id="44m" data-nome="Button 44mm - Fundo Metal" data-preco="6.00">
-      <div class="produto-img">
-        <img src="44m.jpg" alt="Button 44mm Fundo Metal" draggable="false">
-      </div>
-      <div class="produto-conteudo">
-        <h3>Button 44mm - Fundo Metal</h3>
-        <p>Alia padrão de mercado com acabamento diferenciado para uso profissional.</p>
-        <div class="preco">R$ 6,00</div>
-        <button class="btn add-cart">Adicionar ao carrinho</button>
-      </div>
-    </div>
+        <div class="produto" data-id="44m" data-nome="Button 44mm - Fundo Metal" data-preco="6.00">
+          <div class="produto-img">
+            <img src="44m.jpg" alt="Button 44mm Fundo Metal" draggable="false">
+          </div>
+          <div class="produto-conteudo">
+            <h3>Button 44mm - Fundo Metal</h3>
+            <p>Alia padrão de mercado com acabamento diferenciado para uso profissional.</p>
+            <div class="preco">R$ 6,00</div>
+            <button class="btn add-cart">Adicionar ao carrinho</button>
+          </div>
+        </div>
 
-    <div class="produto" data-id="58p" data-nome="Button 58mm - Fundo Plástico" data-preco="6.00">
-      <div class="produto-img">
-        <img src="58p.jpg" alt="Button 58mm Fundo Plástico" draggable="false">
-      </div>
-      <div class="produto-conteudo">
-        <h3>Button 58mm - Fundo Plástico</h3>
-        <p>Recomendado para máxima exposição da marca em materiais gráficos e campanhas pontuais.</p>
-        <div class="preco">R$ 6,00</div>
-        <button class="btn add-cart">Adicionar ao carrinho</button>
-      </div>
-    </div>
+        <div class="produto" data-id="58p" data-nome="Button 58mm - Fundo Plástico" data-preco="6.00">
+          <div class="produto-img">
+            <img src="58p.jpg" alt="Button 58mm Fundo Plástico" draggable="false">
+          </div>
+          <div class="produto-conteudo">
+            <h3>Button 58mm - Fundo Plástico</h3>
+            <p>Recomendado para máxima exposição da marca em materiais gráficos e campanhas pontuais.</p>
+            <div class="preco">R$ 6,00</div>
+            <button class="btn add-cart">Adicionar ao carrinho</button>
+          </div>
+        </div>
 
-    <div class="produto" data-id="58m" data-nome="Button 58mm - Fundo Metal" data-preco="7.00">
-      <div class="produto-img">
-        <img src="58m.jpg" alt="Button 58mm Fundo Metal" draggable="false">
+        <div class="produto" data-id="58m" data-nome="Button 58mm - Fundo Metal" data-preco="7.00">
+          <div class="produto-img">
+            <img src="58m.jpg" alt="Button 58mm Fundo Metal" draggable="false">
+          </div>
+          <div class="produto-conteudo">
+            <h3>Button 58mm - Fundo Metal</h3>
+            <p>Combina grande área de impressão com acabamento de alto padrão para materiais institucionais.</p>
+            <div class="preco">R$ 7,00</div>
+            <button class="btn add-cart">Adicionar ao carrinho</button>
+          </div>
+        </div>
+        
       </div>
-      <div class="produto-conteudo">
-        <h3>Button 58mm - Fundo Metal</h3>
-        <p>Combina grande área de impressão com acabamento de alto padrão para materiais institucionais.</p>
-        <div class="preco">R$ 7,00</div>
-        <button class="btn add-cart">Adicionar ao carrinho</button>
-      </div>
-    </div>
-    
-  </div>
-</section>   
+    </section>   
+
     <section id="faq" style="padding: 2rem 5% 4rem; max-width: 1100px; margin: 0 auto;">
       <h2>Perguntas frequentes</h2>
       
       <details style="margin: 1rem 0; padding: 1rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; cursor: pointer;">
         <summary style="font-weight: 600; font-size: 1rem;">Como envio minha arte?</summary>
-        <p style="margin-top: 0.75rem; color: #475569;">Depois de finalizar o pedido no WhatsApp, você manda a imagem. Aceito PNG ou JPG. </p>
+        <p style="margin-top: 0.75rem; color: #475569;">Depois de finalizar o pedido no WhatsApp, você manda a imagem. Aceito PNG ou JPG.</p>
       </details>
 
       <details style="margin: 1rem 0; padding: 1rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; cursor: pointer;">
@@ -831,7 +807,6 @@ body { position: relative; }
         <p style="margin-top: 0.75rem; color: #475569;">Sim, mínimo de 4 buttons por pedido. Acima de 15 unidades você já ganha 15% OFF automático.</p>
       </details>
     </section>
-
   </main> 
 
   <div class="modal-overlay" id="cart-modal">
@@ -874,8 +849,9 @@ body { position: relative; }
   </div>
 
   <footer>
-  <p>© 2026 <a href="https://instagram.com/nellehyriem" target="_blank">Buttonzitos </a> — Todos os direitos reservados.</p>
-</footer>
+    <p>© 2026 <a href="https://instagram.com/nellehyriem" target="_blank">Buttonzitos </a> — Todos os direitos reservados.<br>
+    Feito por <a href="https://www.instagram.com/nellehyriem" target="_blank">Y</a>.</p>
+  </footer>
 
   <div class="toast" id="toast"></div>
 
@@ -1008,7 +984,7 @@ body { position: relative; }
       if (desconto > 0) {
         msg += `\n*Desconto 15%: -${formatarPreco(desconto)}*`;
       }
-      msg += `\n*Total: ${formatarPreco(total)}*`;
+            msg += `\n*Total: ${formatarPreco(total)}*`;
 
       return `https://wa.me/${contatoLoja}?text=${encodeURIComponent(msg)}`;
     }
@@ -1052,17 +1028,17 @@ body { position: relative; }
       subtotalEl.classList.toggle('show', temDesconto);
       descontoEl.classList.toggle('show', temDesconto);
       descontoInfo.classList.toggle('show', temDesconto);
-      
-      if (totalItens > 0 && totalItens < DESCONTO_QTD_MINIMA) {
-  avisoDesconto.textContent = `Faltam ${faltam} button${faltam > 1 ? 's' : ''} pra ganhar 15% OFF!`;
-  avisoDesconto.classList.add('show');
-} else {
-  avisoDesconto.classList.remove('show');
-}
 
-const podeFinalizar = totalItens >= PEDIDO_MINIMO;
-finalizarBtn.disabled = !podeFinalizar;
-avisoMinimo.classList.toggle('show', !podeFinalizar);
+      if (totalItens > 0 && totalItens < DESCONTO_QTD_MINIMA) {
+        avisoDesconto.textContent = `Faltam ${faltam} button${faltam > 1? 's' : ''} pra ganhar 15% OFF!`;
+        avisoDesconto.classList.add('show');
+      } else {
+        avisoDesconto.classList.remove('show');
+      }
+
+      const podeFinalizar = totalItens >= PEDIDO_MINIMO;
+      finalizarBtn.disabled =!podeFinalizar;
+      avisoMinimo.classList.toggle('show',!podeFinalizar);
 
       document.querySelectorAll('.aumentar-qtd').forEach(btn => {
         btn.addEventListener('click', e => {
@@ -1114,7 +1090,7 @@ avisoMinimo.classList.toggle('show', !podeFinalizar);
         }
       }
     }
-    
+
     function removerDoCarrinho(id) {
       const index = carrinho.findIndex(item => item.id === id);
       if (index > -1) {
@@ -1181,7 +1157,7 @@ avisoMinimo.classList.toggle('show', !podeFinalizar);
       }
 
       const resposta = parseInt(captchaResposta.value);
-      if (resposta !== captchaValor) {
+      if (resposta!== captchaValor) {
         captchaErro.classList.add('show');
         captchaResposta.focus();
         mostrarToast('Captcha incorreto!', true);
@@ -1200,7 +1176,7 @@ avisoMinimo.classList.toggle('show', !podeFinalizar);
     });
 
     menuBtn.addEventListener('click', () => {
-      nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+      nav.style.display = nav.style.display === 'block'? 'none' : 'block';
     });
 
     document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -1212,6 +1188,7 @@ avisoMinimo.classList.toggle('show', !podeFinalizar);
         if (window.innerWidth <= 768) nav.style.display = 'none';
       });
     });
+
     carregarCarrinho();
   </script>
 </body>
