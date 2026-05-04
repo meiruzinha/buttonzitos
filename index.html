@@ -56,8 +56,8 @@ Meimei -->
 
     body.modal-open { overflow: hidden; }
 
-    .banner-desconto-topo {
-  background: #c084fc;
+   .banner-desconto-topo {
+  background: #7ab8ff;
   color: #fff;
   text-align: center;
   padding: 0.5rem 1rem;
@@ -65,7 +65,7 @@ Meimei -->
   font-size: 0.9rem;
   letter-spacing: 0.5px;
   width: 100%;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
     @media (max-width: 768px) {
@@ -159,17 +159,54 @@ Meimei -->
     }
     .carrinho-float-count.active { transform: scale(1); }
 
-  .hero {
-position: relative;
+ .hero {
+  position: relative;
   text-align: center;
   width: 100%;
-  height: 82vh;
-  background: #000; 
+  height: 82vh; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 0 5%;
+  overflow: hidden;
+  background: #050510; 
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(ellipse at 25% 40%, rgba(120, 180, 255, 0.65) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 25%, rgba(150, 210, 255, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 75%, rgba(100, 170, 240, 0.55) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 55%, rgba(180, 220, 255, 0.5) 0%, transparent 50%);
+  filter: blur(60px) brightness(1.2);
+  animation: aurora 18s ease-in-out infinite;
+  z-index: 0;
+}
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes aurora {
+ 0%, 100% {
+    transform: translate(-25%, -25%) rotate(0deg) scale(1);
+  }
+ 25% {
+    transform: translate(-20%, -30%) rotate(90deg) scale(1.1);
+  }
+ 50% {
+    transform: translate(-30%, -20%) rotate(180deg) scale(1);
+  }
+ 75% {
+    transform: translate(-25%, -25%) rotate(270deg) scale(1.05);
+  }
 }
 
     .hero h1 {
@@ -181,8 +218,8 @@ position: relative;
       margin-right: auto;
       padding: 0 5%;
     }
-  .hero p {
-  color: #e2e8f0; 
+ .hero p {
+  color: #000; 
   font-weight: 500;
   font-size: 1.5rem; 
   max-width: 1100px;
@@ -744,7 +781,7 @@ position: relative;
       <p>Escolha seu tamanho favorito e personalize!</p>
 
 <div class="scroll-arrow" onclick="document.getElementById('buttons').scrollIntoView({behavior: 'smooth'})">
-    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#e2e8f0" stroke-width="2">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
       <path d="M6 9l6 6 6-6"/>
     </svg>
   </div>
