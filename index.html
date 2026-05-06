@@ -1,647 +1,12 @@
-<!-- espero que isso dê certo e não,
-eu não tenho dinheiro p/ comprar um dominio
-Meimei -->
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <link rel="icon" type="image/png" href="favicon.png"> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Buttonzitos - Buttons personalizados de 32mm, 44mm e 58mm. Fundo plástico ou metal. Pedido mínimo 4 unidades. 15% OFF acima de 15 buttons.">
+  <meta name="description" content="Buttonzitos - Buttons personalizados de 32mm, 44mm e 58mm. Fundo plástico ou metal. Pedido mínimo 5 unidades. 15% OFF acima de 15 buttons.">
   <title>Buttonzitos</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
-    :root {
-      --bg: #ffffff;
-      --card: #f8fafc;
-      --text: #0f172a;
-      --text-muted: #475569;
-      --accent: #0ea5e9;
-      --accent-hover: #0284c7;
-      --danger: #dc2626;
-      --success: #16a34a;
-      --border: #e2e8f0;
-      --radius: 12px;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    img {
-      -webkit-user-drag: none;
-      user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-    }
-    html, body { overflow-x: hidden; }
-
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    input, textarea {
-      -webkit-user-select: text;
-      -moz-user-select: text;
-      -ms-user-select: text;
-      user-select: text;
-    }
-
-    body.modal-open { overflow: hidden; }
-
-   .banner-desconto-topo {
-      background: #7ab8ff;
-      color: #fff;
-      text-align: center;
-      padding: 0.5rem 1rem;
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-      width: 100%;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      background: #fff; 
-      padding: 0.6rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
-      border-bottom: 1px solid #374151; 
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      height: 100%; 
-    }
-
-    .logo img {
-      height: 60px; 
-      width: auto;  
-      display: block;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    nav a {
-      color: #000;
-      text-decoration: none;
-      margin-left: 1.5rem;
-      transition: color 0.2s;
-      font-weight: 500;
-    }
-    nav a:hover { color: var(--accent); }
-
-    .carrinho-float {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 99;
-      width: 56px;
-      height: 56px;
-      background: #92dcfd;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .carrinho-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(146, 220, 253, 0.6);
-    }
-    .carrinho-float-icon { 
-      font-size: 1.5rem; 
-      filter: invert(0); 
-    }
-    .carrinho-float-count {
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      background: var(--accent);
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 700;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transform: scale(0);
-      transition: transform 0.2s;
-    }
-    .carrinho-float-count.active { transform: scale(1); }
-
-    main { background: var(--bg); }
-    section {
-      padding: 2rem 5% 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    h2 { font-size: 2rem; margin-bottom: 0.5rem; }
-
-    .produtos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.25rem;
-      margin-top: 2rem;
-      align-items: stretch;
-    }
-
-    .produto {
-      background: #fff;
-      padding: 1rem;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      align-items: center;
-    }
-
-    .produto-img {
-      flex: 0 0 140px;
-      width: 140px;
-      height: auto;
-    }
-
-    .produto-img img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      border-radius: 8px;
-      display: block;
-    }
-
-    .produto-conteudo {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .produto h3 {
-      color: #000;
-      margin-bottom: 0.25rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      line-height: 1.3;
-    }
-
-    .produto p {
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-      flex-grow: 1;
-      font-size: 0.8rem;
-      line-height: 1.4;
-    }
-
-    .preco {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--text);
-    }
-
-    .btn {
-      background: #000;
-      color: white;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: var(--radius);
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      width: fit-content;
-      text-decoration: none;
-      display: inline-block;
-      text-align: center;
-      font-size: 0.85rem;
-    } 
-
-    .btn:hover {
-      background: #1e293b;
-      transform: translateY(-2px);
-    }
-    .btn:active { transform: translateY(0); }
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-    .btn-outline:hover { background: var(--card); transform: none; }
-
-    .btn-qtd {
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid var(--border);
-      width: 26px;
-      height: 26px;
-      padding: 0;
-      font-size: 1rem;
-      line-height: 1;
-      flex-shrink: 0;
-      border-radius: 6px;
-    }
-    .btn-qtd:hover { background: #e2e8f0; transform: none; }
-
-    .btn.btn-danger.remover-item {
-      background: var(--danger);
-      color: white;
-      padding: 0;
-      font-size: 1rem;
-      width: 26px;
-      height: 26px;
-      min-width: 26px;
-      max-width: 26px;
-      flex-shrink: 0;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
-    }
-    .btn.btn-danger.remover-item:hover { background: #b91c1c; transform: none; }
-
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      left: 2rem;
-      right: auto;
-      max-width: calc(100vw - 4rem);
-      background: var(--card);
-      border: 1px solid var(--accent);
-      padding: 1rem 1.5rem;
-      border-radius: var(--radius);
-      transform: translateX(-120%);
-      transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
-      z-index: 200;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      word-break: break-word;
-      opacity: 0;
-      pointer-events: none;
-      visibility: hidden;
-    }
-
-    .toast.show { 
-      transform: translateX(0); 
-      opacity: 1;
-      pointer-events: all;
-      visibility: visible;
-    }
-
-    .toast.error { border-color: var(--danger); }
-
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s;
-      padding: 0.5rem;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .modal {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      width: 100%;
-      max-width: 600px;
-      max-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      transform: scale(0.9);
-      transition: transform 0.2s;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
-    }
-
-    .modal-overlay.active .modal { transform: scale(1); }
-
-    .modal-header {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-shrink: 0;
-    }
-
-    .modal-header h2 { font-size: 1.2rem; }
-
-    .close-modal {
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.7rem;
-      cursor: pointer;
-      line-height: 1;
-      padding: 0 0.5rem;
-    }
-
-    .modal-body {
-      padding: 0.75rem 1rem;
-      overflow-y: auto;
-      flex: 1 1 auto;
-      min-height: 0;
-    }
-
-    .cart-empty {
-      text-align: center;
-      color: var(--text-muted);
-      padding: 3rem 0;
-      font-size: 1rem;
-    }
-
-    .cart-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0.5rem;
-      align-items: center;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .cart-item:last-child { border-bottom: none; }
-
-    .item-info {
-      min-width: 0;
-    }
-
-    .item-info h4 {
-      margin-bottom: 0.1rem;
-      font-size: 0.9rem;
-      word-break: break-word;
-    }
-    .item-info p {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-    }
-
-    .item-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem; 
-      flex-shrink: 0;
-    }
-
-    .item-qtd {
-      color: var(--accent);
-      font-weight: 700;
-      min-width: 24px; 
-      text-align: center;
-      font-size: 0.95rem; 
-    }
-
-    .modal-footer {
-      padding: 0.75rem 1rem;
-      border-top: 1px solid var(--border);
-      flex-shrink: 0;
-      background: var(--bg);
-    }
-
-    .cliente-input,.captcha-input {
-      width: 100%;
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.4rem 0.6rem;
-      border-radius: 8px;
-      margin-bottom: 0.35rem;
-      font-size: 14px;
-      font-family: inherit;
-    }
-    .cliente-input:focus,.captcha-input:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .captcha-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 0.4rem;
-      border-radius: 8px;
-      margin-bottom: 0.35rem;
-      text-align: center;
-    }
-
-    .captcha-pergunta {
-      font-size: 0.8rem;
-      margin-bottom: 0.3rem;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .captcha-erro {
-      color: var(--danger);
-      font-size: 0.8rem;
-      margin-top: -0.25rem;
-      margin-bottom: 0.25rem;
-      display: none;
-    }
-
-    .captcha-erro.show { display: block; }
-
-    .desconto-info {
-      background: #dcfce7;
-      border: 1px solid var(--success);
-      color: var(--success);
-      padding: 0.4rem;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 0.4rem;
-      display: none;
-    }
-    .desconto-info.show { display: block; }
-
-    .aviso-desconto {
-      background: #fef3c7;
-      border: 1px solid #f59e0b;
-      color: #d97706;
-      padding: 0.4rem;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 0.4rem;
-      display: none;
-    }
-    .aviso-desconto.show { display: block; }
-
-    .cart-total {
-      display: flex;
-      justify-content: space-between;
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-    }
-
-    .cart-subtotal {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 0.2rem;
-      display: none;
-    }
-    .cart-subtotal.show { display: flex; }
-
-    .cart-desconto {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      color: var(--success);
-      margin-bottom: 0.3rem;
-      font-weight: 600;
-      display: none;
-    }
-    .cart-desconto.show { display: flex; }
-
-    .aviso-minimo {
-      color: var(--danger);
-      font-size: 0.85rem;
-      text-align: center;
-      margin-bottom: 0.6rem;
-      display: none;
-    }
-    .aviso-minimo.show { display: block; }
-
-    .modal-actions {
-      display: flex;
-      gap: 0.6rem;
-    }
-
-    .modal-actions .btn { flex: 1; }
-
-    footer {
-      text-align: center;
-      padding: 2rem 5%;
-      background: #000;
-      color: #fff;
-      margin-top: 2rem;
-    }
-
-    footer a {
-      color: #ffc8dd;
-      background: linear-gradient(45deg, #ffc8dd, #bde0fe, #c8e6c9, #fff3b0, #ffd6e8, #a2d2ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: none;
-      font-weight: 700;
-      transition: opacity 0.2s;
-    }
-
-    footer a:hover { opacity: 0.8; }
-
-    #menu-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; }
-
-    @media (max-width: 768px) {
-      body { position: relative; }
-      nav { display: none; }
-      #menu-btn { display: block; }
-      .modal { width: 100%; max-width: none; max-height: 85vh; }
-      .modal-body { padding: 0.5rem 0.75rem; }
-      .modal-footer { padding: 0.5rem 0.75rem; }
-      .modal-header { padding: 0.5rem 0.75rem; }
-      .cart-item {
-        grid-template-columns: 1fr;
-        gap: 0.4rem;
-        padding: 0.6rem 0;
-      }
-      .item-actions {
-        justify-content: space-between;
-        width: 100%;
-      }
-      .btn-qtd {
-        width: 22px !important;
-        height: 22px !important;
-        font-size: 0.9rem !important;
-        border-radius: 4px;
-      }
-      .btn.btn-danger.remover-item {
-        padding: 0 !important;
-        font-size: 0.9rem !important;
-        width: 22px !important;
-        height: 22px !important;
-        min-width: 22px !important;
-        max-width: 22px !important;
-        line-height: 1 !important;
-        border-radius: 4px;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-      }
-      .item-qtd {
-        min-width: 20px;
-        font-size: 0.9rem;
-      }
-      .item-actions {
-        gap: 0.3rem;
-      }
-      .carrinho-float {
-        width: 50px;
-        height: 50px;
-        right: 15px;
-        bottom: 15px;
-      }
-      .produto {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .produto-img {
-        width: 100%;
-        height: auto;
-        flex: none;
-      }
-      .produto-img img {
-        width: 100%;
-        height: auto;
-        max-height: 200px;
-        object-fit: contain;
-      }
-      .btn {
-        width: 100%;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="banner-desconto-topo">
@@ -669,78 +34,102 @@ Meimei -->
   <main>
     <section id="buttons">
       <h2>
-        <img src="icone-buttons.png" alt="Buttons" style="width: 100%; max-width: 170px; height: auto;" draggable="false">
+        <img src="icone-buttons.png" alt="Buttons" class="titulo-buttons" draggable="false">
       </h2>
       <div class="produtos">
         
-        <div class="produto" data-id="32p" data-nome="Button 32mm - Fundo Plástico" data-preco="4.00">
+        <div class="produto" data-id="32p" data-nome="Button 32mm - Fundo Plástico" data-preco="5.00">
           <div class="produto-img">
             <img src="32p.jpg" alt="Button 32mm Fundo Plástico" draggable="false">
           </div>
           <div class="produto-conteudo">
             <h3>Button 32mm - Fundo Plástico</h3>
             <p>Leve e econômico, ideal para ações promocionais, distribuição em eventos e grandes tiragens.</p>
-            <div class="preco">R$ 4,00</div>
+            <div class="preco">R$ 5,00</div>
             <button class="btn add-cart">Adicionar ao carrinho</button>
           </div>
         </div>
 
-        <div class="produto" data-id="32m" data-nome="Button 32mm - Fundo Metal" data-preco="5.00">
+        <div class="produto" data-id="32m" data-nome="Button 32mm - Fundo Metal" data-preco="6.00">
           <div class="produto-img">
             <img src="32m.jpg" alt="Button 32mm Fundo Metal" draggable="false">
           </div>
           <div class="produto-conteudo">
             <h3>Button 32mm - Fundo Metal</h3>
             <p>Acabamento premium indicado para brindes institucionais e aplicações que exigem apresentação superior.</p>
-            <div class="preco">R$ 5,00</div>
+            <div class="preco">R$ 6,00</div>
             <button class="btn add-cart">Adicionar ao carrinho</button>
           </div>
         </div>
 
-        <div class="produto" data-id="44p" data-nome="Button 44mm - Fundo Plástico" data-preco="5.00">
+        <div class="produto" data-id="44p" data-nome="Button 44mm - Fundo Plástico" data-preco="6.00">
           <div class="produto-img">
             <img src="44p.jpg" alt="Button 44mm Fundo Plástico" draggable="false">
           </div>
           <div class="produto-conteudo">
             <h3>Button 44mm - Fundo Plástico</h3>
             <p>Versátil e de excelente custo-benefício para campanhas, lançamentos e identificação visual.</p>
-            <div class="preco">R$ 5,00</div>
+            <div class="preco">R$ 6,00</div>
             <button class="btn add-cart">Adicionar ao carrinho</button>
           </div>
         </div>
 
-        <div class="produto" data-id="44m" data-nome="Button 44mm - Fundo Metal" data-preco="6.00">
+        <div class="produto" data-id="44m" data-nome="Button 44mm - Fundo Metal" data-preco="7.00">
           <div class="produto-img">
             <img src="44m.jpg" alt="Button 44mm Fundo Metal" draggable="false">
           </div>
           <div class="produto-conteudo">
             <h3>Button 44mm - Fundo Metal</h3>
             <p>Alia padrão de mercado com acabamento diferenciado para uso profissional.</p>
-            <div class="preco">R$ 6,00</div>
+            <div class="preco">R$ 7,00</div>
             <button class="btn add-cart">Adicionar ao carrinho</button>
           </div>
         </div>
 
-        <div class="produto" data-id="58p" data-nome="Button 58mm - Fundo Plástico" data-preco="6.00">
+        <div class="produto" data-id="58p" data-nome="Button 58mm - Fundo Plástico" data-preco="7.00">
           <div class="produto-img">
             <img src="58p.jpg" alt="Button 58mm Fundo Plástico" draggable="false">
           </div>
           <div class="produto-conteudo">
             <h3>Button 58mm - Fundo Plástico</h3>
             <p>Recomendado para máxima exposição da marca em materiais gráficos e campanhas pontuais.</p>
-            <div class="preco">R$ 6,00</div>
+            <div class="preco">R$ 7,00</div>
             <button class="btn add-cart">Adicionar ao carrinho</button>
           </div>
         </div>
 
-        <div class="produto" data-id="58m" data-nome="Button 58mm - Fundo Metal" data-preco="7.00">
+        <div class="produto" data-id="58m" data-nome="Button 58mm - Fundo Metal" data-preco="8.00">
           <div class="produto-img">
             <img src="58m.jpg" alt="Button 58mm Fundo Metal" draggable="false">
           </div>
           <div class="produto-conteudo">
             <h3>Button 58mm - Fundo Metal</h3>
             <p>Combina grande área de impressão com acabamento de alto padrão para materiais institucionais.</p>
-            <div class="preco">R$ 7,00</div>
+            <div class="preco">R$ 8,00</div>
+            <button class="btn add-cart">Adicionar ao carrinho</button>
+          </div>
+        </div>
+
+        <div class="produto" data-id="58p-espelho" data-nome="Button Espelho 58mm - Fundo Plástico" data-preco="10.00">
+          <div class="produto-img">
+            <img src="58p-espelho.jpg" alt="Button Espelho 58mm Fundo Plástico" draggable="false">
+          </div>
+          <div class="produto-conteudo">
+            <h3>Button Espelho 58mm - Fundo Plástico</h3>
+            <p>Button funcional com espelho no verso. Une sua marca à praticidade do dia a dia. Ideal pra brindes úteis que as pessoas realmente usam.</p>
+            <div class="preco">R$ 10,00</div>
+            <button class="btn add-cart">Adicionar ao carrinho</button>
+          </div>
+        </div>
+
+        <div class="produto" data-id="32m-nfc" data-nome="Button NFC 32mm - Fundo Metal" data-preco="16.00">
+          <div class="produto-img">
+            <img src="32m-nfc.jpg" alt="Button NFC 32mm Fundo Metal" draggable="false">
+          </div>
+          <div class="produto-conteudo">
+            <h3>Button NFC 32mm - Fundo Metal</h3>
+            <p>Button inteligente com chip NFC. Aproxime o celular e abra seu WhatsApp ou Instagram na hora. Perfeito pra networking e divulgação rápida.</p>
+            <div class="preco">R$ 16,00</div>
             <button class="btn add-cart">Adicionar ao carrinho</button>
           </div>
         </div>
@@ -748,22 +137,22 @@ Meimei -->
       </div>
     </section>   
 
-    <section id="faq" style="padding: 2rem 5% 4rem; max-width: 1100px; margin: 0 auto;">
+    <section id="faq">
       <h2>Perguntas frequentes</h2>
       
-      <details style="margin: 1rem 0; padding: 1rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; cursor: pointer;">
-        <summary style="font-weight: 600; font-size: 1rem;">Como envio minha arte?</summary>
-        <p style="margin-top: 0.75rem; color: #475569;">Depois de finalizar o pedido no WhatsApp, você manda a imagem. Aceito PNG ou JPG.</p>
+      <details>
+        <summary>Como envio minha arte?</summary>
+        <p>Depois de finalizar o pedido no WhatsApp, você manda a imagem. Aceito PNG ou JPG.</p>
       </details>
 
-      <details style="margin: 1rem 0; padding: 1rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; cursor: pointer;">
-        <summary style="font-weight: 600; font-size: 1rem;">Qual o prazo de produção?</summary>
-        <p style="margin-top: 0.75rem; color: #475569;">Produzo em até 2 dias úteis após confirmação do pagamento + aprovação da arte.</p>
+      <details>
+        <summary>Qual o prazo de produção?</summary>
+        <p>Produzo em até 2 dias úteis após confirmação do pagamento + aprovação da arte.</p>
       </details>
 
-      <details style="margin: 1rem 0; padding: 1rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; cursor: pointer;">
-        <summary style="font-weight: 600; font-size: 1rem;">Tem pedido mínimo?</summary>
-        <p style="margin-top: 0.75rem; color: #475569;">Sim, mínimo de 4 buttons por pedido. Acima de 15 unidades você já ganha 15% OFF automático.</p>
+      <details>
+        <summary>Tem pedido mínimo?</summary>
+        <p>Sim, mínimo de 5 buttons por pedido. Acima de 15 unidades você já ganha 15% OFF automático.</p>
       </details>
     </section>
   </main> 
@@ -798,7 +187,7 @@ Meimei -->
           <span>Total:</span>
           <span id="cart-total">R$ 0,00</span>
         </div>
-        <div class="aviso-minimo" id="aviso-minimo">Pedido mínimo: 4 buttons</div>
+        <div class="aviso-minimo" id="aviso-minimo">Pedido mínimo: 5 buttons</div>
         <div class="modal-actions">
           <button class="btn btn-outline" id="limpar-carrinho">Limpar</button>
           <button class="btn" id="finalizar-compra">Finalizar no WhatsApp</button>
@@ -814,341 +203,6 @@ Meimei -->
 
   <div class="toast" id="toast"></div>
 
-  <script>
-    const contatoLoja = '5587988116684';
-    const PEDIDO_MINIMO = 4;
-    const DESCONTO_QTD_MINIMA = 15;
-    const DESCONTO_PERCENTUAL = 0.15;
-
-    let carrinho = [];
-    let captchaValor = 0;
-    let toastTimeout = null;
-
-    const toast = document.getElementById('toast');
-    const addButtons = document.querySelectorAll('.add-cart');
-    const menuBtn = document.getElementById('menu-btn');
-    const nav = document.getElementById('nav');
-    const carrinhoFloat = document.getElementById('carrinho-float');
-    const carrinhoFloatCount = document.getElementById('carrinho-float-count');
-
-    const cartModal = document.getElementById('cart-modal');
-    const closeModal = document.getElementById('close-modal');
-    const cartItemsEl = document.getElementById('cart-items');
-    const cartFooter = document.getElementById('cart-footer');
-    const cartTotalEl = document.getElementById('cart-total');
-    const subtotalEl = document.getElementById('cart-subtotal');
-    const subtotalValor = document.getElementById('subtotal-valor');
-    const descontoEl = document.getElementById('cart-desconto');
-    const descontoValor = document.getElementById('desconto-valor');
-    const descontoInfo = document.getElementById('desconto-info');
-    const avisoDesconto = document.getElementById('aviso-desconto');
-    const avisoMinimo = document.getElementById('aviso-minimo');
-    const limparBtn = document.getElementById('limpar-carrinho');
-    const finalizarBtn = document.getElementById('finalizar-compra');
-    const nomeClienteInput = document.getElementById('nome-cliente');
-    const captchaPergunta = document.getElementById('captcha-pergunta');
-    const captchaResposta = document.getElementById('captcha-resposta');
-    const captchaErro = document.getElementById('captcha-erro');
-
-    function salvarCarrinho() {
-      localStorage.setItem('buttonzitos_carrinho', JSON.stringify(carrinho));
-    }
-
-    function carregarCarrinho() {
-      try {
-        const salvo = localStorage.getItem('buttonzitos_carrinho');
-        if (salvo) {
-          carrinho = JSON.parse(salvo);
-          atualizarContador();
-        }
-      } catch (e) {
-        console.error('Carrinho corrompido, limpando...');
-        localStorage.removeItem('buttonzitos_carrinho');
-        carrinho = [];
-      }
-    }
-
-    function gerarCaptcha() {
-      const a = Math.floor(Math.random() * 9) + 1;
-      const b = Math.floor(Math.random() * 9) + 1;
-      captchaValor = a + b;
-      captchaPergunta.textContent = `Quanto é ${a} + ${b}?`;
-      captchaResposta.value = '';
-      captchaErro.classList.remove('show');
-    }
-
-    function formatarPreco(valor) {
-      return `R$ ${valor.toFixed(2).replace('.', ',')}`;
-    }
-
-    function getTotalItens() {
-      return carrinho.reduce((acc, item) => acc + item.qtd, 0);
-    }
-
-    function getSubtotal() {
-      return carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
-    }
-
-    function getDesconto() {
-      const totalItens = getTotalItens();
-      if (totalItens >= DESCONTO_QTD_MINIMA) {
-        return getSubtotal() * DESCONTO_PERCENTUAL;
-      }
-      return 0;
-    }
-
-    function getTotal() {
-      return getSubtotal() - getDesconto();
-    }
-
-    function atualizarContador() {
-      const total = getTotalItens();
-      carrinhoFloatCount.textContent = total;
-      carrinhoFloatCount.classList.toggle('active', total > 0);
-      salvarCarrinho();
-    }
-
-    function mostrarToast(msg, erro = false) {
-      if (toastTimeout) {
-        clearTimeout(toastTimeout);
-        toastTimeout = null;
-      }
-      
-      toast.classList.remove('show');
-      void toast.offsetWidth;
-      
-      toast.textContent = msg;
-      toast.classList.toggle('error', erro);
-      toast.classList.add('show');
-      
-      toastTimeout = setTimeout(() => {
-        toast.classList.remove('show');
-      }, 2000);
-    }
-
-    function gerarLinkWpp() {
-      const nome = nomeClienteInput.value.trim();
-      let msg = 'Olá! Quero fazer um pedido na Buttonzitos:\n\n';
-      if (nome) msg += `*Nome:* ${nome}\n\n`;
-
-      carrinho.forEach(item => {
-        msg += `${item.qtd}x ${item.nome} - ${formatarPreco(item.preco * item.qtd)}\n`;
-      });
-
-      const subtotal = getSubtotal();
-      const desconto = getDesconto();
-      const total = getTotal();
-
-      msg += `\n*Subtotal: ${formatarPreco(subtotal)}*`;
-      if (desconto > 0) {
-        msg += `\n*Desconto 15%: -${formatarPreco(desconto)}*`;
-      }
-            msg += `\n*Total: ${formatarPreco(total)}*`;
-
-      return `https://wa.me/${contatoLoja}?text=${encodeURIComponent(msg)}`;
-    }
-
-    function renderizarCarrinho() {
-      if (carrinho.length === 0) {
-        cartItemsEl.innerHTML = '<div class="cart-empty">Carrinho vazio</div>';
-        cartFooter.style.display = 'none';
-        return;
-      }
-
-      cartFooter.style.display = 'block';
-      gerarCaptcha();
-
-      cartItemsEl.innerHTML = carrinho.map(item => `
-        <div class="cart-item">
-          <div class="item-info">
-            <h4>${item.nome}</h4>
-            <p>${formatarPreco(item.preco)} cada</p>
-          </div>
-          <div class="item-actions">
-            <button class="btn btn-qtd diminuir-qtd" data-id="${item.id}">-</button>
-            <span class="item-qtd">${item.qtd}</span>
-            <button class="btn btn-qtd aumentar-qtd" data-id="${item.id}">+</button>
-            <button class="btn btn-danger remover-item" data-id="${item.id}">×</button>
-          </div>
-        </div>
-      `).join('');
-
-      const totalItens = getTotalItens();
-      const subtotal = getSubtotal();
-      const desconto = getDesconto();
-      const total = getTotal();
-      const temDesconto = desconto > 0;
-      const faltam = DESCONTO_QTD_MINIMA - totalItens;
-
-      subtotalValor.textContent = formatarPreco(subtotal);
-      descontoValor.textContent = `-${formatarPreco(desconto)}`;
-      cartTotalEl.textContent = formatarPreco(total);
-
-      subtotalEl.classList.toggle('show', temDesconto);
-      descontoEl.classList.toggle('show', temDesconto);
-      descontoInfo.classList.toggle('show', temDesconto);
-
-      if (totalItens > 0 && totalItens < DESCONTO_QTD_MINIMA) {
-        avisoDesconto.textContent = `Faltam ${faltam} button${faltam > 1? 's' : ''} pra ganhar 15% OFF!`;
-        avisoDesconto.classList.add('show');
-      } else {
-        avisoDesconto.classList.remove('show');
-      }
-
-      const podeFinalizar = totalItens >= PEDIDO_MINIMO;
-      finalizarBtn.disabled =!podeFinalizar;
-      avisoMinimo.classList.toggle('show',!podeFinalizar);
-
-      document.querySelectorAll('.aumentar-qtd').forEach(btn => {
-        btn.addEventListener('click', e => {
-          const id = e.target.dataset.id;
-          alterarQtd(id, 1);
-        });
-      });
-
-      document.querySelectorAll('.diminuir-qtd').forEach(btn => {
-        btn.addEventListener('click', e => {
-          const id = e.target.dataset.id;
-          alterarQtd(id, -1);
-        });
-      });
-
-      document.querySelectorAll('.remover-item').forEach(btn => {
-        btn.addEventListener('click', e => {
-          const id = e.target.dataset.id;
-          removerDoCarrinho(id);
-        });
-      });
-    }
-
-    function abrirModal() {
-      renderizarCarrinho();
-      cartModal.classList.add('active');
-      document.body.classList.add('modal-open');
-    }
-
-    function fecharModal() {
-      cartModal.classList.remove('active');
-      document.body.classList.remove('modal-open');
-    }
-
-    function alterarQtd(id, delta) {
-      const item = carrinho.find(item => item.id === id);
-      if (item) {
-        item.qtd += delta;
-        if (item.qtd <= 0) {
-          removerDoCarrinho(id);
-        } else if (item.qtd > 99) {
-          item.qtd = 99;
-          mostrarToast('Limite de 99 unidades', true);
-          atualizarContador();
-          renderizarCarrinho();
-        } else {
-          atualizarContador();
-          renderizarCarrinho();
-        }
-      }
-    }
-
-    function removerDoCarrinho(id) {
-      const index = carrinho.findIndex(item => item.id === id);
-      if (index > -1) {
-        const item = carrinho[index];
-        carrinho.splice(index, 1);
-        atualizarContador();
-        renderizarCarrinho();
-        mostrarToast(`${item.nome} removido`);
-      }
-    }
-
-    addButtons.forEach(btn => {
-      btn.addEventListener('click', e => {
-        const produto = e.target.closest('.produto');
-        const id = produto.dataset.id;
-        const nome = produto.dataset.nome;
-        const preco = parseFloat(produto.dataset.preco);
-
-        const itemExistente = carrinho.find(item => item.id === id);
-
-        if (itemExistente) {
-          if(itemExistente.qtd < 99) {
-            itemExistente.qtd++;
-          } else {
-            mostrarToast('Limite de 99 unidades', true);
-            return;
-          }
-        } else {
-          carrinho.push({ id, nome, preco, qtd: 1 });
-        }
-
-        atualizarContador();
-        mostrarToast(`${nome} adicionado!`);
-      });
-    });
-
-    carrinhoFloat.addEventListener('click', abrirModal);
-    closeModal.addEventListener('click', fecharModal);
-    cartModal.addEventListener('click', e => {
-      if (e.target === cartModal) fecharModal();
-    });
-
-    limparBtn.addEventListener('click', () => {
-      carrinho = [];
-      nomeClienteInput.value = '';
-      atualizarContador();
-      renderizarCarrinho();
-      mostrarToast('Carrinho limpo');
-    });
-
-    finalizarBtn.addEventListener('click', e => {
-      e.preventDefault();
-
-      const totalItens = getTotalItens();
-      if (totalItens < PEDIDO_MINIMO) {
-        mostrarToast(`Pedido mínimo de ${PEDIDO_MINIMO} buttons`, true);
-        return;
-      }
-
-      if (!nomeClienteInput.value.trim()) {
-        mostrarToast('Digite seu nome primeiro', true);
-        nomeClienteInput.focus();
-        return;
-      }
-
-      const resposta = parseInt(captchaResposta.value);
-      if (resposta!== captchaValor) {
-        captchaErro.classList.add('show');
-        captchaResposta.focus();
-        mostrarToast('Captcha incorreto!', true);
-        return;
-      }
-
-      captchaErro.classList.remove('show');
-      window.open(gerarLinkWpp(), '_blank');
-
-      setTimeout(() => {
-        carrinho = [];
-        nomeClienteInput.value = '';
-        atualizarContador();
-        fecharModal();
-      }, 500);
-    });
-
-    menuBtn.addEventListener('click', () => {
-      nav.style.display = nav.style.display === 'block'? 'none' : 'block';
-    });
-
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector(link.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-        if (window.innerWidth <= 768) nav.style.display = 'none';
-      });
-    });
-
-    carregarCarrinho();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
