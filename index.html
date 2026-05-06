@@ -57,37 +57,28 @@ Meimei -->
     body.modal-open { overflow: hidden; }
 
    .banner-desconto-topo {
-  background: #7ab8ff;
-  color: #fff;
-  text-align: center;
-  padding: 0.5rem 1rem;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  width: 100%;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
-
-    @media (max-width: 768px) {
-  .scroll-arrow {
-    bottom: 20px; 
-  }
-  .hero p {
-    font-size: 1.2rem; 
-  }
-}
+      background: #7ab8ff;
+      color: #fff;
+      text-align: center;
+      padding: 0.5rem 1rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      width: 100%;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
 
     header {
-  position: sticky;
-  top: 0;
-  background: #fff; 
-  padding: 0.6rem 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
-  border-bottom: 1px solid #374151; 
-}
+      position: sticky;
+      top: 0;
+      background: #fff; 
+      padding: 0.6rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      border-bottom: 1px solid #374151; 
+    }
 
     .logo {
       display: flex;
@@ -159,85 +150,12 @@ Meimei -->
     }
     .carrinho-float-count.active { transform: scale(1); }
 
- .hero {
-  position: relative;
-  text-align: center;
-  width: 100%;
-  height: 82vh; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 5%;
-  overflow: hidden;
-  background: #050510; 
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background: 
-    radial-gradient(ellipse at 25% 40%, rgba(120, 180, 255, 0.65) 0%, transparent 50%),
-    radial-gradient(ellipse at 75% 25%, rgba(150, 210, 255, 0.6) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 75%, rgba(100, 170, 240, 0.55) 0%, transparent 50%),
-    radial-gradient(ellipse at 60% 55%, rgba(180, 220, 255, 0.5) 0%, transparent 50%);
-  filter: blur(60px) brightness(1.2);
-  animation: aurora 18s ease-in-out infinite;
-  z-index: 0;
-}
-.hero > * {
-  position: relative;
-  z-index: 1;
-}
-
-@keyframes aurora {
- 0%, 100% {
-    transform: translate(-25%, -25%) rotate(0deg) scale(1);
-  }
- 25% {
-    transform: translate(-20%, -30%) rotate(90deg) scale(1.1);
-  }
- 50% {
-    transform: translate(-30%, -20%) rotate(180deg) scale(1);
-  }
- 75% {
-    transform: translate(-25%, -25%) rotate(270deg) scale(1.05);
-  }
-}
-
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      margin-bottom: 0.5rem;
-      color: #ffffff;
-      max-width: 1100px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 5%;
-    }
- .hero p {
-  color: #ffffff; 
-  font-weight: 500;
-  font-size: 1.5rem; 
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 5%;
-}
-
     main { background: var(--bg); }
     section {
       padding: 2rem 5% 4rem;
       max-width: 1100px;
       margin: 0 auto;
     }
-    section.hero {
-  max-width: none;
-  padding: 0; 
-}
 
     h2 { font-size: 2rem; margin-bottom: 0.5rem; }
 
@@ -723,32 +641,6 @@ Meimei -->
         width: 100%;
       }
     }
-.scroll-arrow {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  cursor: pointer;
-  animation: bounce 2s infinite;
-  opacity: 0.7;
-  transition: opacity 0.3s;
-}
-
-.scroll-arrow:hover {
-  opacity: 1;
-}
-
-@keyframes bounce {
- 0%, 20%, 50%, 80%, 100% {
-    transform: translateX(-50%) translateY(0);
-  }
- 40% {
-    transform: translateX(-50%) translateY(-10px);
-  }
- 60% {
-    transform: translateX(-50%) translateY(-5px);
-  }
-}
   </style>
 </head>
 <body>
@@ -768,7 +660,6 @@ Meimei -->
     <div class="header-right">
       <button id="menu-btn">☰</button>
       <nav id="nav">
-        <a href="#inicio">Início</a>
         <a href="#buttons">Buttons</a>
         <a href="#faq">FAQ</a>
       </nav>
@@ -776,17 +667,6 @@ Meimei -->
   </header>
 
   <main>
-    <section class="hero" id="inicio">
-      <img src="banner-hero.png" alt="Buttonzitos - Buttons Personalizados" style="max-width: 999px; width: 90%; height: auto; margin: 0 auto 1rem; display: block;" draggable="false">
-      <p>Escolha seu tamanho favorito e personalize!</p>
-
-<div class="scroll-arrow" onclick="document.getElementById('buttons').scrollIntoView({behavior: 'smooth'})">
-    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
-      <path d="M6 9l6 6 6-6"/>
-    </svg>
-  </div>
-    </section>
-
     <section id="buttons">
       <h2>
         <img src="icone-buttons.png" alt="Buttons" style="width: 100%; max-width: 170px; height: auto;" draggable="false">
