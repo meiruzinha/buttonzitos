@@ -589,11 +589,27 @@ footer a {
 
 footer a:hover { opacity: 0.8; }
 
-#menu-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; }
+#menu-btn { display: none; background: none; border: none; color: #000; font-size: 1.5rem; }
 
 @media (max-width: 768px) {
   body { position: relative; }
-  nav { display: none; }
+  nav { 
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 5%;
+  }
+  nav a {
+    display: block;
+    margin: 0;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  nav a:last-child { border-bottom: none; }
   #menu-btn { display: block; }
   .modal { width: 100%; max-width: none; max-height: 85vh; }
   .modal-body { padding: 0.5rem 0.75rem; }
@@ -655,7 +671,7 @@ footer a:hover { opacity: 0.8; }
     max-height: 200px;
     object-fit: contain;
   }
-  .btn {
+  .add-cart {
     width: 100%;
   }
 }
