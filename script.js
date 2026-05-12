@@ -3,6 +3,28 @@ const PEDIDO_MINIMO = 5;
 const DESCONTO_QTD_MINIMA = 15;
 const DESCONTO_PERCENTUAL = 0.15;
 
+const TABELA_PRECOS = {
+  '32p': 5.00,
+  '32m': 6.00,
+  '44p': 6.00,
+  '44m': 7.00,
+  '58p': 7.00,
+  '58m': 8.00,
+  '58p-espelho': 10.00,
+  '32m-nfc': 16.00
+};
+
+const TABELA_NOMES = {
+  '32p': 'Button 32mm - Fundo Plástico',
+  '32m': 'Button 32mm - Fundo Metal',
+  '44p': 'Button 44mm - Fundo Plástico',
+  '44m': 'Button 44mm - Fundo Metal',
+  '58p': 'Button 58mm - Fundo Plástico',
+  '58m': 'Button 58mm - Fundo Metal',
+  '58p-espelho': 'Button Espelho 58mm - Fundo Plástico',
+  '32m-nfc': 'Button NFC 32mm - Fundo Metal'
+};
+
 let carrinho = [];
 let captchaValor = 0;
 let toastTimeout = null;
@@ -33,6 +55,22 @@ const captchaPergunta = document.getElementById('captcha-pergunta');
 const captchaResposta = document.getElementById('captcha-resposta');
 const captchaErro = document.getElementById('captcha-erro');
 
+function sanitizarCarrinho(dados) {
+  if (!Array.isArray(dados)) return [];
+  return dados.filter(item => {
+    return item &&
+           TABELA_PRECOS[item.id] &&
+           typeof item.qtd === 'number' &&
+           item.qtd > 0 &&
+           item.qtd <= 99;
+  }).map(item => ({
+    id: item.id,
+    nome: TABELA_NOMES[item.id], // Força nome oficial
+    preco: TABELA_PRECOS[item.id], // Força preço oficial
+    qtd: Math.floor(item.qtd)
+  }));
+}
+
 function salvarCarrinho() {
   localStorage.setItem('buttonzitos_carrinho', JSON.stringify(carrinho));
 }
@@ -41,7 +79,8 @@ function carregarCarrinho() {
   try {
     const salvo = localStorage.getItem('buttonzitos_carrinho');
     if (salvo) {
-      carrinho = JSON.parse(salvo);
+      const dadosBrutos = JSON.parse(salvo);
+      carrinho = sanitizarCarrinho(dadosBrutos); // Sanitiza na carga
       atualizarContador();
     }
   } catch (e) {
@@ -96,14 +135,14 @@ function mostrarToast(msg, erro = false) {
     clearTimeout(toastTimeout);
     toastTimeout = null;
   }
-  
+
   toast.classList.remove('show');
   void toast.offsetWidth;
-  
+
   toast.textContent = msg;
   toast.classList.toggle('error', erro);
   toast.classList.add('show');
-  
+
   toastTimeout = setTimeout(() => {
     toast.classList.remove('show');
   }, 2000);
@@ -141,20 +180,28 @@ function renderizarCarrinho() {
   cartFooter.style.display = 'block';
   gerarCaptcha();
 
+  
   cartItemsEl.innerHTML = carrinho.map(item => `
     <div class="cart-item">
       <div class="item-info">
-        <h4>${item.nome}</h4>
-        <p>${formatarPreco(item.preco)} cada</p>
+        <h4></h4>
+        <p></p>
       </div>
       <div class="item-actions">
         <button class="btn btn-qtd diminuir-qtd" data-id="${item.id}">-</button>
-        <span class="item-qtd">${item.qtd}</span>
+        <span class="item-qtd"></span>
         <button class="btn btn-qtd aumentar-qtd" data-id="${item.id}">+</button>
         <button class="btn btn-danger remover-item" data-id="${item.id}">×</button>
       </div>
     </div>
   `).join('');
+
+    cartItemsEl.querySelectorAll('.cart-item').forEach((el, i) => {
+    const item = carrinho[i];
+    el.querySelector('h4').textContent = item.nome;
+    el.querySelector('p').textContent = `${formatarPreco(item.preco)} cada`;
+    el.querySelector('.item-qtd').textContent = item.qtd;
+  });
 
   const totalItens = getTotalItens();
   const subtotal = getSubtotal();
@@ -172,15 +219,15 @@ function renderizarCarrinho() {
   descontoInfo.classList.toggle('show', temDesconto);
 
   if (totalItens > 0 && totalItens < DESCONTO_QTD_MINIMA) {
-    avisoDesconto.textContent = `Faltam ${faltam} button${faltam > 1 ? 's' : ''} pra ganhar 15% OFF!`;
+    avisoDesconto.textContent = `Faltam ${faltam} button${faltam > 1? 's' : ''} pra ganhar 15% OFF!`;
     avisoDesconto.classList.add('show');
   } else {
     avisoDesconto.classList.remove('show');
   }
 
   const podeFinalizar = totalItens >= PEDIDO_MINIMO;
-  finalizarBtn.disabled = !podeFinalizar;
-  avisoMinimo.classList.toggle('show', !podeFinalizar);
+  finalizarBtn.disabled =!podeFinalizar;
+  avisoMinimo.classList.toggle('show',!podeFinalizar);
 
   document.querySelectorAll('.aumentar-qtd').forEach(btn => {
     btn.addEventListener('click', e => {
@@ -248,8 +295,15 @@ addButtons.forEach(btn => {
   btn.addEventListener('click', e => {
     const produto = e.target.closest('.produto');
     const id = produto.dataset.id;
-    const nome = produto.dataset.nome;
-    const preco = parseFloat(produto.dataset.preco);
+
+    // Valida se o ID existe na tabela oficial
+    if (!TABELA_PRECOS[id]) {
+      mostrarToast('Produto inválido', true);
+      return;
+    }
+
+    const nome = TABELA_NOMES[id];
+    const preco = TABELA_PRECOS[id];
 
     const itemExistente = carrinho.find(item => item.id === id);
 
@@ -299,7 +353,7 @@ finalizarBtn.addEventListener('click', e => {
   }
 
   const resposta = parseInt(captchaResposta.value);
-  if (resposta !== captchaValor) {
+  if (resposta!== captchaValor) {
     captchaErro.classList.add('show');
     captchaResposta.focus();
     mostrarToast('Captcha incorreto!', true);
@@ -318,7 +372,7 @@ finalizarBtn.addEventListener('click', e => {
 });
 
 menuBtn.addEventListener('click', () => {
-  nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+  nav.style.display = nav.style.display === 'block'? 'none' : 'block';
 });
 
 document.querySelectorAll('a[href^="#"]').forEach(link => {
