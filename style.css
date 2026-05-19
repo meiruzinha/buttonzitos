@@ -44,7 +44,7 @@ input, textarea {
 body.modal-open { overflow: hidden; }
 
 .banner-desconto-topo {
-  background: #7ab8ff;
+  background: #fb6b41;
   color: #fff;
   text-align: center;
   padding: 0.5rem 1rem;
@@ -101,7 +101,7 @@ nav a:hover { color: var(--accent); }
   z-index: 99;
   width: 56px;
   height: 56px;
-  background: #92dcfd;
+  background: #fb6b41;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -112,7 +112,7 @@ nav a:hover { color: var(--accent); }
 }
 .carrinho-float:hover {
   transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(146, 220, 253, 0.6);
+  box-shadow: 0 6px 20px rgba(251, 107, 65, 0.6);
 }
 .carrinho-float-icon { 
   font-size: 1.5rem; 
