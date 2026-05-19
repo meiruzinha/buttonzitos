@@ -576,18 +576,16 @@ footer {
   margin-top: 2rem;
 }
 
-footer a {
-  color: #ffc8dd;
-  background: linear-gradient(45deg, #ffc8dd, #bde0fe, #c8e6c9, #fff3b0, #ffd6e8, #a2d2ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+ footer a {
+  color: #fb6b41; /* mesma cor da barra/carrinho */
   text-decoration: none;
   font-weight: 700;
   transition: opacity 0.2s;
 }
 
-footer a:hover { opacity: 0.8; }
+footer a:hover { 
+  opacity: 0.8; 
+}
 
 #menu-btn { display: none; background: none; border: none; color: #000; font-size: 1.5rem; }
 
