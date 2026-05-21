@@ -46,19 +46,25 @@ async function carregarProdutos() {
 }
 
 function renderizarProdutos() {
-  listaProdutos.innerHTML = PRODUTOS.map(p => `
-    <div class="produto" data-id="${p.id}">
-      <div class="produto-img">
-        <img src="${p.imagem}" alt="${p.nome}" draggable="false">
+  listaProdutos.innerHTML = PRODUTOS.map(p => {
+    const btnHTML = p.esgotado 
+      ? `<button class="btn" disabled>Esgotado</button>`
+      : `<button class="btn add-cart">Adicionar ao carrinho</button>`;
+
+    return `
+      <div class="produto" data-id="${p.id}">
+        <div class="produto-img">
+          <img src="${p.imagem}" alt="${p.nome}" draggable="false">
+        </div>
+        <div class="produto-conteudo">
+          <h3>${p.nome}</h3>
+          <p>${p.descricao}</p>
+          <div class="preco">${formatarPreco(p.preco)}</div>
+          ${btnHTML}
+        </div>
       </div>
-      <div class="produto-conteudo">
-        <h3>${p.nome}</h3>
-        <p>${p.descricao}</p>
-        <div class="preco">${formatarPreco(p.preco)}</div>
-        <button class="btn add-cart">Adicionar ao carrinho</button>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   document.querySelectorAll('.add-cart').forEach(btn => {
     btn.addEventListener('click', e => {
@@ -75,6 +81,7 @@ function sanitizarCarrinho(dados) {
     const produto = PRODUTOS.find(p => p.id === item.id);
     return item &&
            produto &&
+           !produto.esgotado &&
            typeof item.qtd === 'number' &&
            item.qtd > 0 &&
            item.qtd <= 99;
@@ -312,6 +319,11 @@ function adicionarAoCarrinho(id) {
   const produto = PRODUTOS.find(p => p.id === id);
   if (!produto) {
     mostrarToast('Produto inválido', true);
+    return;
+  }
+
+  if (produto.esgotado) {
+    mostrarToast('Produto esgotado', true);
     return;
   }
 

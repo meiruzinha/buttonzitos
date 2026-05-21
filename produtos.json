@@ -44,9 +44,10 @@
   {
     "id": "58p-espelho",
     "nome": "Button Espelho 58mm - Fundo Plástico",
-    "descricao": "Com espelho no verso. Útil, compacto e com a sua arte na frente.",
+    "descricao": "Button funcional com espelho no verso. Une sua marca à praticidade do dia a dia. Ideal pra brindes úteis que as pessoas realmente usam.",
     "preco": 10.00,
-    "imagem": "58p-espelho.jpg"
+    "imagem": "58p-espelho.jpg",
+    "esgotado": true
   },
   {
     "id": "32m-nfc",
